@@ -15,19 +15,18 @@ gsap.registerPlugin(ScrollTrigger)
 const HERO_SLIDES = [
   {
     image: 'https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=1920&h=1000&fit=crop&q=90',
-    label: 'Eternal Classics',
+    label: 'Crafted Since 1954',
+    collection: 'eternal-classics',
   },
   {
     image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=1920&h=1000&fit=crop&q=90',
-    label: 'Modern Elegance',
-  },
-  {
-    image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=1920&h=1000&fit=crop&q=90',
-    label: 'Heritage Collection',
+    label: 'Personalised Service, Faster Turnarounds',
+    collection: 'modern-elegance',
   },
   {
     image: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=1920&h=1000&fit=crop&q=90',
-    label: 'Bridal Collection',
+    label: 'Designed Around Every Love Story',
+    collection: 'bridal',
   },
 ]
 
@@ -88,8 +87,8 @@ function HeroSlider() {
           <em>Jewellery</em><br />
           for Retailers
         </h1>
-        <Link to="/collections" className="sc-hero-cta">
-          Explore Now <ArrowRight size={16} />
+        <Link to={`/catalogue?collection=${HERO_SLIDES[current].collection}`} className="sc-hero-cta">
+          Explore Collection <ArrowRight size={16} />
         </Link>
       </div>
 
@@ -110,9 +109,9 @@ function HeroSlider() {
 
 /* ── Upcoming Shows data ──────────────────────────────────────────────── */
 const SHOWS = [
-  { name: 'International Jewellery London', date: 'Sept 1–3, 2025', location: 'Excel London' },
-  { name: 'Spring Fair Birmingham', date: 'Feb 2–5, 2026', location: 'NEC Birmingham' },
-  { name: 'Goldsmiths Fair', date: 'Oct 3–12, 2025', location: 'Goldsmiths Centre, London' },
+  { name: 'International Jewellery London', date: 'Sept 1–3, 2025', location: 'Excel London', image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&h=600&fit=crop&q=80' },
+  { name: 'Spring Fair Birmingham', date: 'Feb 2–5, 2026', location: 'NEC Birmingham', image: 'https://images.unsplash.com/photo-1611085583191-a3b181a88401?w=800&h=600&fit=crop&q=80' },
+  { name: 'Goldsmiths Fair', date: 'Oct 3–12, 2025', location: 'Goldsmiths Centre, London', image: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800&h=600&fit=crop&q=80' },
 ]
 
 /* ─────────────────────────────────────────────────────────────────────── */
@@ -162,18 +161,18 @@ export default function Home() {
       <section className="sc-brand-intro">
         <div className="container">
           <div className="sc-brand-intro-inner sc-reveal">
-            <span className="sc-eyebrow">Est. 1978 · Birmingham, UK</span>
+            <span className="sc-eyebrow">Est. 1954 · Birmingham, UK</span>
             <h2 className="sc-brand-intro-heading">
               Fine Wholesale Jewellery,<br />
               <em>Crafted for Retailers</em>
             </h2>
             <p className="sc-brand-intro-text">
-              G&amp;J Lumley has supplied independent jewellers across the United Kingdom
-              for over four decades. From hallmarked gold rings to certified diamond pendants,
-              every piece in our collection is chosen for quality, value, and enduring style.
+              Established in 1954, G&amp;J Lumley has built lasting partnerships with
+              independent jewellers across the UK and Ireland through craftsmanship,
+              precision, and personalised service.
             </p>
             <Link to="/about" className="sc-text-link">
-              Discover Our Story <ArrowUpRight size={15} />
+              Read More <ArrowUpRight size={15} />
             </Link>
           </div>
         </div>
@@ -188,10 +187,10 @@ export default function Home() {
             <div className="sc-section-rule" />
           </div>
 
-          {isAuthenticated && featured.length > 0 ? (
+          {featured.length > 0 ? (
             <>
               <div className="sc-product-grid">
-                {featured.slice(0, 8).map((p, i) => (
+                {featured.slice(0, 5).map((p, i) => (
                   <div key={p.id} className="sc-stagger-item">
                     <ProductCard product={p} />
                   </div>
@@ -203,54 +202,30 @@ export default function Home() {
                 </Link>
               </div>
             </>
-          ) : (
-            <div className="sc-iconic-locked sc-reveal">
-              <div className="sc-product-grid sc-product-grid-blur">
-                {[...Array(8)].map((_, i) => (
-                  <div key={i} className="sc-stagger-item sc-product-placeholder">
-                    <div className="sc-placeholder-img" />
-                    <div className="sc-placeholder-line" />
-                    <div className="sc-placeholder-line sc-placeholder-line-sm" />
-                  </div>
-                ))}
-              </div>
-              <div className="sc-locked-overlay">
-                <p>Trade account required to view pricing</p>
-                <Link to="/login" className="sc-btn-primary">
-                  Retailer Login <ArrowRight size={16} />
-                </Link>
-                <Link to="/register" className="sc-text-link" style={{ marginTop: '0.75rem' }}>
-                  Apply for Trade Account <ArrowUpRight size={14} />
-                </Link>
-              </div>
-            </div>
-          )}
+          ) : null}
         </div>
       </section>
 
-      {/* ── 4. FULL BANNER (important collection) ──────────────────── */}
+      {/* ── 4. FULL BANNER (Craftsmanship Video Placeholder) ──────────── */}
       <section className="sc-full-banner">
         <div className="sc-full-banner-img">
-          <img
-            src="https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?w=1920&h=700&fit=crop&q=90"
-            alt="Bridal Collection"
-            loading="lazy"
+          <video
+            src="/craftmanship.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
           />
         </div>
         <div className="sc-full-banner-overlay" />
         <div className="sc-full-banner-content container">
           <div className="sc-reveal">
-            <span className="sc-eyebrow" style={{ color: '#d4a843' }}>Featured Collection</span>
-            <h2 className="sc-full-banner-heading">Bridal Collection</h2>
+
+            <span className="sc-eyebrow" style={{ color: '#d4a843' }}>Behind the Scenes</span>
+            <h2 className="sc-full-banner-heading">The Art of Craftsmanship</h2>
             <p className="sc-full-banner-sub">
-              Exquisite pieces for the most special day. Ethically sourced, hallmarked, and delivered with care.
+              Watch how our master jewellers bring every piece to life with precision and passion.
             </p>
-            <Link
-              to={isAuthenticated ? '/catalogue?collection=bridal' : '/login'}
-              className="sc-btn-primary"
-            >
-              Explore Collection <ArrowRight size={16} />
-            </Link>
           </div>
         </div>
       </section>
@@ -293,14 +268,12 @@ export default function Home() {
             <div className="sc-section-rule" />
           </div>
 
-          <div className="sc-shows-list">
+          <div className="sc-shows-grid">
             {SHOWS.map((show, i) => (
-              <div className="sc-show-item sc-reveal" key={i}>
-                <div className="sc-show-num">{String(i + 1).padStart(2, '0')}</div>
-                <div className="sc-show-info">
-                  <h3 className="sc-show-name">{show.name}</h3>
-                  <p className="sc-show-meta">{show.date} &nbsp;·&nbsp; {show.location}</p>
-                </div>
+              <div className="sc-show-card sc-reveal" key={i}>
+                <img src={show.image} alt={show.name} className="sc-show-img" />
+                <h3 className="sc-show-name">{show.name}</h3>
+                <p className="sc-show-meta">{show.date} <br /> {show.location}</p>
                 <Link to="/contact" className="sc-show-cta">
                   Book Appointment <ArrowRight size={15} />
                 </Link>

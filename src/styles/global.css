@@ -4189,7 +4189,7 @@ h3 {
 .sc-iconic { padding: 6rem 0; background: #fff; }
 .sc-product-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 1.5rem;
   margin-bottom: 3rem;
 }
@@ -4256,11 +4256,13 @@ h3 {
 .sc-full-banner-img {
   position: absolute; inset: 0;
 }
-.sc-full-banner-img img {
+.sc-full-banner-img img,
+.sc-full-banner-img video {
   width: 100%; height: 100%; object-fit: cover;
   transition: transform 8s ease;
 }
-.sc-full-banner:hover .sc-full-banner-img img { transform: scale(1.04); }
+.sc-full-banner:hover .sc-full-banner-img img,
+.sc-full-banner:hover .sc-full-banner-img video { transform: scale(1.04); }
 .sc-full-banner-overlay {
   position: absolute; inset: 0;
   background: linear-gradient(to right, rgba(10,10,10,0.72) 35%, rgba(10,10,10,0.2) 100%);
@@ -4268,8 +4270,23 @@ h3 {
 .sc-full-banner-content {
   position: relative; z-index: 2;
   height: 100%;
-  display: flex; align-items: center;
+  display: flex; align-items: center; justify-content: center;
   color: #fff;
+  text-align: center;
+}
+.sc-play-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.6);
+  background: rgba(0,0,0,0.3);
+  color: #fff;
+  margin-bottom: 1.5rem;
+  transition: background 0.3s, transform 0.3s;
+}
+.sc-play-btn:hover {
+  background: rgba(0,0,0,0.6);
+  transform: scale(1.05);
 }
 .sc-full-banner-heading {
   font-family: 'Cormorant Garamond', Georgia, serif;
@@ -4283,8 +4300,8 @@ h3 {
   font-size: 0.95rem;
   color: rgba(255,255,255,0.75);
   line-height: 1.75;
-  max-width: 420px;
-  margin-bottom: 2rem;
+  max-width: 520px;
+  margin: 0 auto 2rem;
 }
 
 /* Shop by Category */
@@ -4301,7 +4318,7 @@ h3 {
   border-radius: 2px;
   text-decoration: none;
 }
-.sc-cat-img-wrap { aspect-ratio: 1; overflow: hidden; }
+.sc-cat-img-wrap { aspect-ratio: 3/4; overflow: hidden; }
 .sc-cat-img-wrap img {
   width: 100%; height: 100%;
   object-fit: cover;
@@ -4322,46 +4339,56 @@ h3 {
 .sc-cat-card:hover .sc-cat-arrow { opacity: 1; transform: translateX(0); color: #b8860b; }
 
 /* Upcoming Shows */
-.sc-shows { padding: 6rem 0; background: #fff; }
-.sc-shows-list {
+.sc-shows { padding: 6rem 0; background: #0f1c16; color: #fff; }
+.sc-shows .sc-section-title { color: #fff; }
+.sc-shows .sc-eyebrow { color: #d4a843; }
+.sc-shows-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+.sc-show-card {
+  background: #15271f;
+  padding: 1.5rem;
   display: flex; flex-direction: column;
-  border-top: 1px solid #ece9e4;
+  align-items: center;
+  text-align: center;
+  border: 1px solid #1f372d;
+  transition: transform 0.3s ease;
 }
-.sc-show-item {
-  display: flex; align-items: center; gap: 2rem;
-  padding: 2rem 0;
-  border-bottom: 1px solid #ece9e4;
+.sc-show-card:hover {
+  transform: translateY(-5px);
 }
-.sc-show-num {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 2.4rem;
-  font-weight: 300;
-  color: #e0ddd8;
-  min-width: 52px;
-  line-height: 1;
+.sc-show-img {
+  width: 100%; aspect-ratio: 4/3;
+  object-fit: cover;
+  margin-bottom: 1.5rem;
+  border: 2px solid #284438;
 }
-.sc-show-info { flex: 1; }
 .sc-show-name {
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   font-weight: 500;
-  color: #1a1a1a;
-  margin-bottom: 0.3rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
 }
-.sc-show-meta { font-size: 0.82rem; color: #888; letter-spacing: 0.04em; }
+.sc-show-meta { 
+  font-size: 0.82rem; color: #a9bea9; 
+  letter-spacing: 0.04em; 
+  margin-bottom: 1.5rem;
+}
 .sc-show-cta {
   display: inline-flex; align-items: center; gap: 6px;
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: #1a1a1a;
+  color: #d4a843;
   text-decoration: none;
-  border-bottom: 1px solid #1a1a1a;
+  border-bottom: 1px solid #d4a843;
   padding-bottom: 2px;
-  white-space: nowrap;
   transition: color 0.2s, border-color 0.2s;
 }
-.sc-show-cta:hover { color: #b8860b; border-color: #b8860b; }
+.sc-show-cta:hover { color: #fff; border-color: #fff; }
 
 /* ── FOOTER ──────────────────────────────────────────────────── */
 .sc-footer {
@@ -4454,6 +4481,7 @@ h3 {
 @media (max-width: 1024px) {
   .sc-product-grid { grid-template-columns: repeat(3, 1fr); }
   .sc-cat-grid { grid-template-columns: repeat(3, 1fr); }
+  .sc-shows-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 768px) {
@@ -4493,6 +4521,7 @@ h3 {
   }
   .sc-product-grid { grid-template-columns: repeat(2, 1fr); }
   .sc-cat-grid { grid-template-columns: repeat(2, 1fr); }
+  .sc-shows-grid { grid-template-columns: 1fr; }
   .sc-hero { height: 70vh; min-height: 420px; }
   .sc-hero-content { bottom: 5rem; }
   .sc-hero-heading { font-size: 2.4rem; }
@@ -4500,8 +4529,6 @@ h3 {
   .sc-footer-inner { flex-direction: column; padding: 3rem 0; gap: 2rem; }
   .sc-footer-nav { text-align: left; }
   .sc-footer-bottom .container { flex-direction: column; gap: 0.75rem; text-align: center; }
-  .sc-show-item { flex-wrap: wrap; gap: 1rem; }
-  .sc-show-cta { margin-left: auto; }
 }
 
 @media (max-width: 480px) {
@@ -4512,3 +4539,163 @@ h3 {
   .sc-full-banner { height: 300px; }
   .sc-full-banner-heading { font-size: 1.8rem; }
 }
+
+/* ==========================================================================
+   OUR WORLD PAGE (.ow-*)
+   ========================================================================== */
+
+.page-our-world {
+  background: #fff;
+  color: #1a1a1a;
+  overflow-x: hidden;
+}
+
+/* 1. HERO PARALLAX */
+.ow-hero-section {
+  position: relative;
+  height: 85vh;
+  min-height: 600px;
+  overflow: hidden;
+}
+.ow-parallax-banner {
+  position: absolute;
+  top: -20%; left: 0; right: 0; bottom: 0;
+  height: 120%;
+}
+.ow-parallax-banner img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.ow-tagline-container {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  display: flex; justify-content: center;
+  z-index: 10;
+}
+.ow-tagline-overlap {
+  background: #fff;
+  padding: 4rem 3rem;
+  max-width: 900px;
+  text-align: center;
+  box-shadow: 0 -10px 40px rgba(0,0,0,0.05);
+}
+.ow-tagline-overlap h1 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 400;
+  line-height: 1.3;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+/* 2. BRAND WRITE UP */
+.ow-section { padding: 8rem 0; }
+.ow-split {
+  display: flex; gap: 4rem;
+  align-items: center;
+}
+.ow-split-img { flex: 1; aspect-ratio: 4/5; overflow: hidden; }
+.ow-split-img img { width: 100%; height: 100%; object-fit: cover; }
+.ow-split-text { flex: 1; padding: 2rem 0; }
+.ow-eyebrow {
+  display: block;
+  font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+  color: #888; margin-bottom: 2rem;
+}
+.ow-text-content p {
+  font-size: 1rem; line-height: 1.8; color: #4a4a4a; margin-bottom: 1.5rem;
+}
+.ow-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin-top: 2rem;
+  padding: 0.8rem 2rem;
+  background: #1a1a1a; color: #fff;
+  text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.1em;
+  transition: background 0.3s;
+}
+.ow-btn:hover { background: #b8860b; color: #fff; }
+
+/* 3. CRAFTSMANSHIP */
+.ow-craftsmanship { background: #f8f7f5; text-align: center; }
+.ow-craft-block { max-width: 800px; margin: 0 auto; }
+.ow-craft-block p {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  line-height: 1.5; color: #1a1a1a; margin: 0;
+}
+
+/* 4. THE LUMLEY ADVANTAGE */
+.ow-advantage { padding-top: 6rem; padding-bottom: 6rem; }
+.ow-sticky-layout {
+  display: flex; gap: 6rem;
+  align-items: flex-start;
+}
+.ow-sticky-left {
+  flex: 1;
+  position: sticky; top: 120px;
+}
+.ow-sticky-content h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 400;
+  margin-bottom: 1.5rem; color: #1a1a1a;
+}
+.ow-sticky-content p {
+  font-size: 1.1rem; line-height: 1.7; color: #666;
+  max-width: 480px;
+}
+.ow-scroll-right {
+  flex: 1; display: flex; flex-direction: column; gap: 4rem;
+  padding-top: 50vh; padding-bottom: 50vh;
+}
+.ow-advantage-card {
+  background: #fff; padding: 3rem;
+  border: 1px solid #ece9e4;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+}
+.ow-advantage-card h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.8rem; margin-bottom: 1rem; color: #1a1a1a; font-weight: 500;
+}
+.ow-advantage-card p {
+  color: #666; line-height: 1.7; margin: 0;
+}
+
+/* 5. RETAILER EXPERIENCE */
+.ow-retailer { background: #1a1a1a; color: #fff; text-align: center; }
+.ow-retailer-inner h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2rem, 3.5vw, 3rem); font-weight: 400;
+  margin-bottom: 3rem; color: #d4a843;
+}
+.ow-retailer-list {
+  list-style: none; padding: 0; margin: 0 auto;
+  max-width: 600px;
+}
+.ow-retailer-list li {
+  font-size: 1.2rem; padding: 1.5rem 0;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.ow-retailer-list li:first-child { border-top: 1px solid rgba(255,255,255,0.1); }
+
+/* 6. PERSONAL SERVICE */
+.ow-service { position: relative; height: 80vh; min-height: 600px; display: flex; align-items: center; justify-content: center; text-align: center; }
+.ow-service-bg { position: absolute; inset: 0; }
+.ow-service-bg img { width: 100%; height: 100%; object-fit: cover; }
+.ow-service-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.4); }
+.ow-service-content { position: relative; z-index: 2; color: #fff; max-width: 800px; }
+.ow-service-content h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.5rem, 4vw, 3.5rem); font-weight: 400; margin-bottom: 1.5rem; letter-spacing: 0.05em;
+}
+.ow-service-content p { font-size: 1.1rem; line-height: 1.8; color: rgba(255,255,255,0.9); margin: 0; }
+
+@media (max-width: 1024px) {
+  .ow-split { flex-direction: column; gap: 3rem; }
+  .ow-split-img { max-height: 500px; }
+  .ow-sticky-layout { flex-direction: column; gap: 4rem; }
+  .ow-sticky-left { position: static; text-align: center; }
+  .ow-sticky-content p { margin: 0 auto; }
+  .ow-scroll-right { padding-top: 0; padding-bottom: 0; gap: 2rem; }
+  .ow-tagline-overlap { padding: 3rem 2rem; }
+}
+
