@@ -43,24 +43,20 @@ export default function Header() {
 
           <nav className={`main-nav ${mobileOpen ? 'open' : ''}`}>
             <Link to="/" onClick={() => setMobileOpen(false)}>Home</Link>
-            {isAuthenticated && (
-              <>
-                <div className="nav-dropdown">
-                  <button className="nav-dropdown-trigger">
-                    Collections <ChevronDown size={14} />
-                  </button>
-                  <div className="nav-dropdown-menu">
-                    <Link to="/collections" onClick={() => setMobileOpen(false)}>All Collections</Link>
-                    <Link to="/catalogue?collection=eternal-classics" onClick={() => setMobileOpen(false)}>Eternal Classics</Link>
-                    <Link to="/catalogue?collection=modern-elegance" onClick={() => setMobileOpen(false)}>Modern Elegance</Link>
-                    <Link to="/catalogue?collection=heritage" onClick={() => setMobileOpen(false)}>Heritage</Link>
-                    <Link to="/catalogue?collection=bridal" onClick={() => setMobileOpen(false)}>Bridal</Link>
-                  </div>
-                </div>
-                <Link to="/catalogue" onClick={() => setMobileOpen(false)}>Catalogue</Link>
-                <Link to="/new-arrivals" onClick={() => setMobileOpen(false)}>New Arrivals</Link>
-              </>
-            )}
+            <div className="nav-dropdown">
+              <button className="nav-dropdown-trigger">
+                Collections <ChevronDown size={14} />
+              </button>
+              <div className="nav-dropdown-menu">
+                <Link to="/collections" onClick={() => setMobileOpen(false)}>All Collections</Link>
+                <Link to="/catalogue?collection=eternal-classics" onClick={() => setMobileOpen(false)}>Eternal Classics</Link>
+                <Link to="/catalogue?collection=modern-elegance" onClick={() => setMobileOpen(false)}>Modern Elegance</Link>
+                <Link to="/catalogue?collection=heritage" onClick={() => setMobileOpen(false)}>Heritage</Link>
+                <Link to="/catalogue?collection=bridal" onClick={() => setMobileOpen(false)}>Bridal</Link>
+              </div>
+            </div>
+            <Link to="/catalogue" onClick={() => setMobileOpen(false)}>Catalogue</Link>
+            <Link to="/new-arrivals" onClick={() => setMobileOpen(false)}>New Arrivals</Link>
             <Link to="/about" onClick={() => setMobileOpen(false)}>About</Link>
             <Link to="/contact" onClick={() => setMobileOpen(false)}>Contact</Link>
           </nav>

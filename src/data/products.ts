@@ -30,7 +30,7 @@ export const categories = [
 export const collections = [
   { id: 'eternal-classics', name: 'Eternal Classics', description: 'Timeless designs that never go out of style', image: 'https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=800&h=500&fit=crop' },
   { id: 'modern-elegance', name: 'Modern Elegance', description: 'Contemporary pieces for the modern retailer', image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&h=500&fit=crop' },
-  { id: 'heritage', name: 'Heritage Collection', description: 'Inspired by traditional British craftsmanship', image: 'https://images.unsplash.com/photo-1515562141589-67f0d27a20db?w=800&h=500&fit=crop' },
+  { id: 'heritage', name: 'Heritage Collection', description: 'Inspired by traditional British craftsmanship', image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&h=500&fit=crop' },
   { id: 'bridal', name: 'Bridal Collection', description: 'Exquisite pieces for the most special day', image: 'https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?w=800&h=500&fit=crop' },
 ]
 
