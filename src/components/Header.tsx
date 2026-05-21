@@ -149,9 +149,6 @@ export default function Header() {
               )}
             </div>
 
-            <Link to="/collections" className="sc-nav-link" onClick={() => setMobileOpen(false)}>
-              Collections
-            </Link>
 
             <Link to="/contact" className="sc-nav-link" onClick={() => setMobileOpen(false)}>
               Connect With Us
