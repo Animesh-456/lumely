@@ -1,17 +1,28 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Search, ShoppingBag, User, Menu, X, ChevronDown, LogOut } from 'lucide-react'
+import { Search, Globe, Heart, User, Menu, X, ChevronDown } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
-import { useCart } from '../context/CartContext'
 
 export default function Header() {
   const { isAuthenticated, user, logout } = useAuth()
-  const { cartCount } = useCart()
   const [mobileOpen, setMobileOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
-  const [userMenuOpen, setUserMenuOpen] = useState(false)
+  const [worldOpen, setWorldOpen] = useState(false)
+  const [userOpen, setUserOpen] = useState(false)
+  const worldRef = useRef<HTMLDivElement>(null)
+  const userRef = useRef<HTMLDivElement>(null)
   const navigate = useNavigate()
+
+  // Close dropdowns on outside click
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (worldRef.current && !worldRef.current.contains(e.target as Node)) setWorldOpen(false)
+      if (userRef.current && !userRef.current.contains(e.target as Node)) setUserOpen(false)
+    }
+    document.addEventListener('mousedown', handleClick)
+    return () => document.removeEventListener('mousedown', handleClick)
+  }, [])
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
@@ -19,101 +30,161 @@ export default function Header() {
       navigate(`/catalogue?search=${encodeURIComponent(searchQuery.trim())}`)
       setSearchOpen(false)
       setSearchQuery('')
+      setMobileOpen(false)
     }
   }
 
+  const ourWorldLinks = [
+    { label: 'Brand Write Up', href: '/about#brand' },
+    { label: 'Craftsmanship', href: '/about#craftsmanship' },
+    { label: 'The Lumley Advantage', href: '/about#advantage' },
+    { label: 'Retailer Experience', href: '/about#retailer' },
+    { label: 'Personal Service', href: '/about#service' },
+  ]
+
   return (
     <>
-      <div className="top-bar">
-        <div className="container">
-          <span>Wholesale enquiries: +44 (0)121 236 4478</span>
-          <span>Trusted UK Jewellery Wholesaler Since 1978</span>
-        </div>
-      </div>
-      <header className="header">
-        <div className="container header-inner">
-          <button className="mobile-toggle" onClick={() => setMobileOpen(!mobileOpen)} aria-label="Toggle menu">
-            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+      <header className="sc-header">
+        {/* ── Top row: Logo centered, icons right ── */}
+        <div className="sc-header-main container">
+          {/* Mobile hamburger */}
+          <button
+            className="sc-mobile-toggle"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
 
-          <Link to="/" className="logo">
-            <span className="logo-text">G&J Lumley</span>
-            <span className="logo-sub">Wholesale Jewellery</span>
+          {/* Logo — absolute center on desktop */}
+          <Link to="/" className="sc-logo" aria-label="G&J Lumley Home">
+            <span className="sc-logo-text">G&J Lumley</span>
+            <span className="sc-logo-sub">Wholesale Jewellery</span>
           </Link>
 
-          <nav className={`main-nav ${mobileOpen ? 'open' : ''}`}>
-            <Link to="/" onClick={() => setMobileOpen(false)}>Home</Link>
-            <div className="nav-dropdown">
-              <button className="nav-dropdown-trigger">
-                Collections <ChevronDown size={14} />
-              </button>
-              <div className="nav-dropdown-menu">
-                <Link to="/collections" onClick={() => setMobileOpen(false)}>All Collections</Link>
-                <Link to="/catalogue?collection=eternal-classics" onClick={() => setMobileOpen(false)}>Eternal Classics</Link>
-                <Link to="/catalogue?collection=modern-elegance" onClick={() => setMobileOpen(false)}>Modern Elegance</Link>
-                <Link to="/catalogue?collection=heritage" onClick={() => setMobileOpen(false)}>Heritage</Link>
-                <Link to="/catalogue?collection=bridal" onClick={() => setMobileOpen(false)}>Bridal</Link>
-              </div>
-            </div>
-            <Link to="/catalogue" onClick={() => setMobileOpen(false)}>Catalogue</Link>
-            <Link to="/new-arrivals" onClick={() => setMobileOpen(false)}>New Arrivals</Link>
-            <Link to="/about" onClick={() => setMobileOpen(false)}>About</Link>
-            <Link to="/contact" onClick={() => setMobileOpen(false)}>Contact</Link>
-          </nav>
-
-          <div className="header-actions">
-            {isAuthenticated && (
-              <button className="icon-btn" onClick={() => setSearchOpen(!searchOpen)} aria-label="Search">
-                <Search size={20} />
-              </button>
-            )}
+          {/* Right actions */}
+          <div className="sc-header-actions">
+            <button
+              className="sc-icon-btn"
+              onClick={() => setSearchOpen(!searchOpen)}
+              aria-label="Search"
+            >
+              <Search size={18} />
+            </button>
+            <button className="sc-icon-btn" aria-label="Region">
+              <Globe size={18} />
+            </button>
+            <button className="sc-icon-btn" aria-label="Wishlist">
+              <Heart size={18} />
+            </button>
 
             {isAuthenticated ? (
-              <>
-                <Link to="/cart" className="icon-btn cart-btn" aria-label="Cart">
-                  <ShoppingBag size={20} />
-                  {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
-                </Link>
-                <div className="user-menu-wrapper">
-                  <button className="icon-btn" onClick={() => setUserMenuOpen(!userMenuOpen)} aria-label="Account">
-                    <User size={20} />
-                  </button>
-                  {userMenuOpen && (
-                    <div className="user-dropdown">
-                      <div className="user-dropdown-header">
-                        <p className="user-dropdown-name">{user?.contactName}</p>
-                        <p className="user-dropdown-company">{user?.companyName}</p>
-                      </div>
-                      <Link to="/account" onClick={() => setUserMenuOpen(false)}>My Account</Link>
-                      <Link to="/account?tab=orders" onClick={() => setUserMenuOpen(false)}>Order History</Link>
-                      <button onClick={() => { logout(); setUserMenuOpen(false); navigate('/') }}>
-                        <LogOut size={16} /> Sign Out
-                      </button>
+              <div className="sc-user-wrapper" ref={userRef}>
+                <button
+                  className="sc-icon-btn"
+                  onClick={() => setUserOpen(!userOpen)}
+                  aria-label="Account"
+                >
+                  <User size={18} />
+                </button>
+                {userOpen && (
+                  <div className="sc-user-dropdown">
+                    <div className="sc-user-header">
+                      <p className="sc-user-name">{user?.contactName}</p>
+                      <p className="sc-user-company">{user?.companyName}</p>
                     </div>
-                  )}
-                </div>
-              </>
+                    <Link to="/account" onClick={() => setUserOpen(false)}>My Account</Link>
+                    <Link to="/catalogue" onClick={() => setUserOpen(false)}>Catalogue</Link>
+                    <Link to="/account?tab=orders" onClick={() => setUserOpen(false)}>Order History</Link>
+                    <button onClick={() => { logout(); setUserOpen(false); navigate('/') }}>
+                      Sign Out
+                    </button>
+                  </div>
+                )}
+              </div>
             ) : (
-              <Link to="/login" className="btn btn-sm btn-primary">Trade Login</Link>
+              <button className="sc-icon-btn" aria-label="Account">
+                <User size={18} />
+              </button>
             )}
+
+            <Link
+              to="/login"
+              className="sc-retailer-btn"
+            >
+              Retailer Login
+            </Link>
           </div>
         </div>
 
+        {/* ── Nav row ── */}
+        <nav className={`sc-nav ${mobileOpen ? 'sc-nav-open' : ''}`} aria-label="Main navigation">
+          <div className="sc-nav-inner container">
+            <Link to="/" className="sc-nav-link" onClick={() => setMobileOpen(false)}>
+              Home
+            </Link>
+
+            {/* OUR WORLD dropdown */}
+            <div className="sc-nav-dropdown" ref={worldRef}>
+              <button
+                className={`sc-nav-link sc-nav-trigger ${worldOpen ? 'active' : ''}`}
+                onClick={() => setWorldOpen(!worldOpen)}
+                aria-expanded={worldOpen}
+              >
+                Our World <ChevronDown size={13} className={`sc-chevron ${worldOpen ? 'rotated' : ''}`} />
+              </button>
+              {worldOpen && (
+                <div className="sc-dropdown-menu">
+                  {ourWorldLinks.map(l => (
+                    <Link
+                      key={l.href}
+                      to={l.href}
+                      className="sc-dropdown-item"
+                      onClick={() => { setWorldOpen(false); setMobileOpen(false) }}
+                    >
+                      {l.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <Link to="/collections" className="sc-nav-link" onClick={() => setMobileOpen(false)}>
+              Collections
+            </Link>
+
+            <Link to="/contact" className="sc-nav-link" onClick={() => setMobileOpen(false)}>
+              Connect With Us
+            </Link>
+          </div>
+        </nav>
+
+        {/* ── Search bar ── */}
         {searchOpen && (
-          <div className="search-bar">
+          <div className="sc-search-bar">
             <div className="container">
-              <form onSubmit={handleSearch} className="search-form">
-                <Search size={20} />
-                <input type="text" placeholder="Search products, collections..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} autoFocus />
-                <button type="button" className="search-close" onClick={() => setSearchOpen(false)}>
-                  <X size={20} />
+              <form onSubmit={handleSearch} className="sc-search-form">
+                <Search size={18} />
+                <input
+                  type="text"
+                  placeholder="Search collections, jewellery..."
+                  value={searchQuery}
+                  onChange={e => setSearchQuery(e.target.value)}
+                  autoFocus
+                />
+                <button type="button" onClick={() => setSearchOpen(false)} aria-label="Close search">
+                  <X size={18} />
                 </button>
               </form>
             </div>
           </div>
         )}
       </header>
-      {mobileOpen && <div className="overlay" onClick={() => setMobileOpen(false)} />}
+
+      {/* Mobile overlay */}
+      {mobileOpen && (
+        <div className="sc-overlay" onClick={() => setMobileOpen(false)} />
+      )}
     </>
   )
 }

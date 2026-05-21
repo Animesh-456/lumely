@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, ArrowUpRight, Star } from 'lucide-react'
+import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useAuth } from '../context/AuthContext'
@@ -11,271 +11,272 @@ import { categories, collections } from '../data/products'
 
 gsap.registerPlugin(ScrollTrigger)
 
-/* ── Marquee ticker ──────────────────────────────────────────────────── */
-const TICKER_ITEMS = [
-  'Wholesale Jewellery',
-  'Hallmarked & Certified',
-  'UK-Wide Delivery',
-  'Est. 1978',
-  'Premium Trade Pricing',
-  'Over 1,000 Pieces',
-  'Independent Retailers',
-  'Diamond & Gold',
+/* ── Hero Slider ──────────────────────────────────────────────────────── */
+const HERO_SLIDES = [
+  {
+    image: 'https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=1920&h=1000&fit=crop&q=90',
+    label: 'Eternal Classics',
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=1920&h=1000&fit=crop&q=90',
+    label: 'Modern Elegance',
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=1920&h=1000&fit=crop&q=90',
+    label: 'Heritage Collection',
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=1920&h=1000&fit=crop&q=90',
+    label: 'Bridal Collection',
+  },
 ]
 
-function Marquee() {
-  const track = useRef<HTMLDivElement>(null)
+function HeroSlider() {
+  const [current, setCurrent] = useState(0)
+  const [prev, setPrev] = useState<number | null>(null)
+  const [animating, setAnimating] = useState(false)
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  const goTo = (idx: number) => {
+    if (animating || idx === current) return
+    setAnimating(true)
+    setPrev(current)
+    setCurrent(idx)
+    setTimeout(() => {
+      setPrev(null)
+      setAnimating(false)
+    }, 900)
+  }
 
   useEffect(() => {
-    if (!track.current) return
-    const items = Array.from(track.current.children)
-    const total = items.length / 2 // cloned
-    const width = (track.current.scrollWidth / 2)
-
-    gsap.to(track.current, {
-      x: -width,
-      duration: 28,
-      ease: 'none',
-      repeat: -1,
-    })
+    timerRef.current = setInterval(() => {
+      setCurrent(c => {
+        const next = (c + 1) % HERO_SLIDES.length
+        setPrev(c)
+        setAnimating(true)
+        setTimeout(() => {
+          setPrev(null)
+          setAnimating(false)
+        }, 900)
+        return next
+      })
+    }, 5000)
+    return () => { if (timerRef.current) clearInterval(timerRef.current) }
   }, [])
 
-  const doubled = [...TICKER_ITEMS, ...TICKER_ITEMS]
-
   return (
-    <div className="marquee-strip">
-      <div className="marquee-track" ref={track}>
-        {doubled.map((t, i) => (
-          <span key={i} className="marquee-item">
-            {t} <span className="marquee-dot">✦</span>
-          </span>
+    <section className="sc-hero">
+      {/* Slides */}
+      {HERO_SLIDES.map((slide, i) => (
+        <div
+          key={i}
+          className={`sc-hero-slide ${i === current ? 'sc-hero-slide-active' : ''} ${i === prev ? 'sc-hero-slide-prev' : ''}`}
+          aria-hidden={i !== current}
+        >
+          <img src={slide.image} alt={slide.label} />
+        </div>
+      ))}
+
+      {/* Subtle overlay */}
+      <div className="sc-hero-overlay" />
+
+      {/* Hero text — bottom left like Shy Creation */}
+      <div className="sc-hero-content container">
+        <p className="sc-hero-label">{HERO_SLIDES[current].label}</p>
+        <h1 className="sc-hero-heading">
+          Exceptional<br />
+          <em>Jewellery</em><br />
+          for Retailers
+        </h1>
+        <Link to="/collections" className="sc-hero-cta">
+          Explore Now <ArrowRight size={16} />
+        </Link>
+      </div>
+
+      {/* Dot navigation */}
+      <div className="sc-hero-dots">
+        {HERO_SLIDES.map((_, i) => (
+          <button
+            key={i}
+            className={`sc-hero-dot ${i === current ? 'active' : ''}`}
+            onClick={() => goTo(i)}
+            aria-label={`Go to slide ${i + 1}`}
+          />
         ))}
       </div>
-    </div>
+    </section>
   )
 }
 
-/* ── Animated counter ─────────────────────────────────────────────────── */
-function Counter({ to, suffix = '' }: { to: number; suffix?: string }) {
-  const ref = useRef<HTMLSpanElement>(null)
-
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const obj = { val: 0 }
-    const tween = gsap.to(obj, {
-      val: to,
-      duration: 2,
-      ease: 'power2.out',
-      scrollTrigger: { trigger: el, start: 'top 85%', once: true },
-      onUpdate: () => {
-        el.textContent = Math.round(obj.val) + suffix
-      },
-    })
-    return () => { tween.kill() }
-  }, [to, suffix])
-
-  return <span ref={ref}>0{suffix}</span>
-}
+/* ── Upcoming Shows data ──────────────────────────────────────────────── */
+const SHOWS = [
+  { name: 'International Jewellery London', date: 'Sept 1–3, 2025', location: 'Excel London' },
+  { name: 'Spring Fair Birmingham', date: 'Feb 2–5, 2026', location: 'NEC Birmingham' },
+  { name: 'Goldsmiths Fair', date: 'Oct 3–12, 2025', location: 'Goldsmiths Centre, London' },
+]
 
 /* ─────────────────────────────────────────────────────────────────────── */
 
 export default function Home() {
   const { isAuthenticated } = useAuth()
   const [featured, setFeatured] = useState<Product[]>([])
-  const [newArrivals, setNewArrivals] = useState<Product[]>([])
-
-  // Refs for GSAP
-  const heroRef = useRef<HTMLElement>(null)
-  const heroTagRef = useRef<HTMLSpanElement>(null)
-  const heroH1Ref = useRef<HTMLHeadingElement>(null)
-  const heroParaRef = useRef<HTMLParagraphElement>(null)
-  const heroActionsRef = useRef<HTMLDivElement>(null)
-  const heroImgRef = useRef<HTMLDivElement>(null)
-  const statsRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     api.getFeaturedProducts().then(setFeatured)
-    api.getNewArrivals().then(setNewArrivals)
-  }, [])
-
-  /* ── Hero entrance ─────────────────────────────────────────────────── */
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
-
-      tl.from(heroImgRef.current, { scale: 1.12, duration: 1.6, ease: 'power2.out' })
-        .from(heroTagRef.current, { y: 30, opacity: 0, duration: 0.7 }, '-=1.0')
-        .from(heroH1Ref.current, { y: 60, opacity: 0, duration: 0.9 }, '-=0.5')
-        .from(heroParaRef.current, { y: 30, opacity: 0, duration: 0.7 }, '-=0.5')
-        .from(heroActionsRef.current, { y: 30, opacity: 0, duration: 0.6 }, '-=0.4')
-    }, heroRef)
-
-    return () => ctx.revert()
   }, [])
 
   /* ── Scroll-triggered reveals ──────────────────────────────────────── */
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Section headings
-      gsap.utils.toArray<HTMLElement>('.reveal-up').forEach(el => {
+      gsap.utils.toArray<HTMLElement>('.sc-reveal').forEach((el, i) => {
         gsap.from(el, {
-          y: 50,
+          y: 48,
           opacity: 0,
-          duration: 0.8,
+          duration: 0.85,
           ease: 'power3.out',
           scrollTrigger: { trigger: el, start: 'top 88%', once: true },
         })
       })
 
-      // Category cards stagger
-      gsap.utils.toArray<HTMLElement>('.cat-card-anim').forEach((el, i) => {
+      gsap.utils.toArray<HTMLElement>('.sc-stagger-item').forEach((el, i) => {
         gsap.from(el, {
-          y: 60,
+          y: 50,
           opacity: 0,
           duration: 0.7,
-          delay: i * 0.1,
+          delay: (i % 4) * 0.1,
           ease: 'power3.out',
           scrollTrigger: { trigger: el, start: 'top 90%', once: true },
         })
       })
-
-      // Collection cards
-      gsap.utils.toArray<HTMLElement>('.col-card-anim').forEach((el, i) => {
-        gsap.from(el, {
-          x: i % 2 === 0 ? -40 : 40,
-          opacity: 0,
-          duration: 0.8,
-          ease: 'power3.out',
-          scrollTrigger: { trigger: el, start: 'top 88%', once: true },
-        })
-      })
-
-      // Product cards
-      gsap.utils.toArray<HTMLElement>('.prod-card-anim').forEach((el, i) => {
-        gsap.from(el, {
-          y: 40,
-          opacity: 0,
-          duration: 0.6,
-          delay: (i % 4) * 0.08,
-          ease: 'power3.out',
-          scrollTrigger: { trigger: el, start: 'top 92%', once: true },
-        })
-      })
-
-      // CTA line animation
-      gsap.utils.toArray<HTMLElement>('.cta-line').forEach((el, i) => {
-        gsap.from(el, {
-          scaleX: 0,
-          transformOrigin: 'left center',
-          duration: 1,
-          delay: i * 0.2,
-          ease: 'power3.inOut',
-          scrollTrigger: { trigger: el, start: 'top 88%', once: true },
-        })
-      })
     })
-
     return () => ctx.revert()
-  }, [featured, newArrivals])
+  }, [featured])
 
   return (
-    <div className="page-home-v2">
+    <div className="sc-page-home">
 
-      {/* ── HERO ──────────────────────────────────────────────────── */}
-      <section className="hero-v2" ref={heroRef}>
-        {/* Background image with Ken Burns */}
-        <div className="hero-v2-bg" ref={heroImgRef}>
-          <img
-            src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=1800&h=1000&fit=crop&q=90"
-            alt="Luxury jewellery"
-          />
-        </div>
-        <div className="hero-v2-overlay" />
+      {/* ── 1. HERO BANNER (4 images auto-scroll) ───────────────────── */}
+      <HeroSlider />
 
-        <div className="hero-v2-body container">
-          <div className="hero-v2-left">
-            <span className="hero-v2-tag" ref={heroTagRef}>
-              <Star size={10} fill="currentColor" /> Est. 1978 &nbsp;·&nbsp; UK Wholesale
-            </span>
-            <h1 className="hero-v2-heading" ref={heroH1Ref}>
-              Exceptional<br />
-              <em>Jewellery</em><br />
-              for Retailers
-            </h1>
-            <p className="hero-v2-sub" ref={heroParaRef}>
-              Trusted wholesale partner to independent jewellers across the United Kingdom.
-              Premium collections, competitive trade pricing, and unrivalled service.
+      {/* ── 2. BRAND INTRO ──────────────────────────────────────────── */}
+      <section className="sc-brand-intro">
+        <div className="container">
+          <div className="sc-brand-intro-inner sc-reveal">
+            <span className="sc-eyebrow">Est. 1978 · Birmingham, UK</span>
+            <h2 className="sc-brand-intro-heading">
+              Fine Wholesale Jewellery,<br />
+              <em>Crafted for Retailers</em>
+            </h2>
+            <p className="sc-brand-intro-text">
+              G&amp;J Lumley has supplied independent jewellers across the United Kingdom
+              for over four decades. From hallmarked gold rings to certified diamond pendants,
+              every piece in our collection is chosen for quality, value, and enduring style.
             </p>
-            <div className="hero-v2-actions" ref={heroActionsRef}>
-              {isAuthenticated ? (
-                <Link to="/catalogue" className="btn-hero-primary">
-                  Browse Catalogue <ArrowRight size={18} />
-                </Link>
-              ) : (
-                <>
-                  <Link to="/register" className="btn-hero-primary">
-                    Open Trade Account <ArrowRight size={18} />
-                  </Link>
-                  <Link to="/login" className="btn-hero-ghost">
-                    Trade Login
-                  </Link>
-                </>
-              )}
-            </div>
+            <Link to="/about" className="sc-text-link">
+              Discover Our Story <ArrowUpRight size={15} />
+            </Link>
           </div>
-
-          {/* Floating stat cards */}
-          <div className="hero-v2-stats">
-            {[
-              { val: 45, suffix: '+', label: 'Years in Business' },
-              { val: 1000, suffix: '+', label: 'SKUs Available' },
-              { val: 500, suffix: '+', label: 'Active Retailers' },
-            ].map((s, i) => (
-              <div className="hero-stat-card" key={i}>
-                <span className="hero-stat-number">
-                  <Counter to={s.val} suffix={s.suffix} />
-                </span>
-                <span className="hero-stat-label">{s.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Scroll indicator */}
-        <div className="hero-scroll-hint">
-          <span>Scroll</span>
-          <div className="scroll-line" />
         </div>
       </section>
 
-      {/* ── MARQUEE ───────────────────────────────────────────────── */}
-      <Marquee />
-
-      {/* ── CATEGORIES ────────────────────────────────────────────── */}
-      <section className="section-v2">
+      {/* ── 3. ICONIC CREATIONS ────────────────────────────────────── */}
+      <section className="sc-iconic">
         <div className="container">
-          <div className="section-v2-header reveal-up">
-            <span className="section-v2-tag">Browse by Type</span>
-            <h2 className="section-v2-title">Our Categories</h2>
-            <div className="section-v2-line" />
+          <div className="sc-section-head sc-reveal">
+            <span className="sc-eyebrow">Handpicked</span>
+            <h2 className="sc-section-title">Iconic Creations</h2>
+            <div className="sc-section-rule" />
           </div>
 
-          <div className="cat-grid-v2">
+          {isAuthenticated && featured.length > 0 ? (
+            <>
+              <div className="sc-product-grid">
+                {featured.slice(0, 8).map((p, i) => (
+                  <div key={p.id} className="sc-stagger-item">
+                    <ProductCard product={p} />
+                  </div>
+                ))}
+              </div>
+              <div className="sc-section-action sc-reveal">
+                <Link to="/catalogue" className="sc-btn-outline">
+                  View Full Catalogue <ArrowRight size={16} />
+                </Link>
+              </div>
+            </>
+          ) : (
+            <div className="sc-iconic-locked sc-reveal">
+              <div className="sc-product-grid sc-product-grid-blur">
+                {[...Array(8)].map((_, i) => (
+                  <div key={i} className="sc-stagger-item sc-product-placeholder">
+                    <div className="sc-placeholder-img" />
+                    <div className="sc-placeholder-line" />
+                    <div className="sc-placeholder-line sc-placeholder-line-sm" />
+                  </div>
+                ))}
+              </div>
+              <div className="sc-locked-overlay">
+                <p>Trade account required to view pricing</p>
+                <Link to="/login" className="sc-btn-primary">
+                  Retailer Login <ArrowRight size={16} />
+                </Link>
+                <Link to="/register" className="sc-text-link" style={{ marginTop: '0.75rem' }}>
+                  Apply for Trade Account <ArrowUpRight size={14} />
+                </Link>
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* ── 4. FULL BANNER (important collection) ──────────────────── */}
+      <section className="sc-full-banner">
+        <div className="sc-full-banner-img">
+          <img
+            src="https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?w=1920&h=700&fit=crop&q=90"
+            alt="Bridal Collection"
+            loading="lazy"
+          />
+        </div>
+        <div className="sc-full-banner-overlay" />
+        <div className="sc-full-banner-content container">
+          <div className="sc-reveal">
+            <span className="sc-eyebrow" style={{ color: '#d4a843' }}>Featured Collection</span>
+            <h2 className="sc-full-banner-heading">Bridal Collection</h2>
+            <p className="sc-full-banner-sub">
+              Exquisite pieces for the most special day. Ethically sourced, hallmarked, and delivered with care.
+            </p>
+            <Link
+              to={isAuthenticated ? '/catalogue?collection=bridal' : '/login'}
+              className="sc-btn-primary"
+            >
+              Explore Collection <ArrowRight size={16} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── 5. SHOP BY CATEGORY / CRAFTSMANSHIP ────────────────────── */}
+      <section className="sc-categories">
+        <div className="container">
+          <div className="sc-section-head sc-reveal">
+            <span className="sc-eyebrow">Browse Our Range</span>
+            <h2 className="sc-section-title">Shop by Category</h2>
+            <div className="sc-section-rule" />
+          </div>
+
+          <div className="sc-cat-grid">
             {categories.map((cat, i) => (
               <Link
                 to={isAuthenticated ? `/catalogue?category=${cat.id}` : '/login'}
                 key={cat.id}
-                className="cat-card-v2 cat-card-anim"
+                className="sc-cat-card sc-stagger-item"
               >
-                <div className="cat-card-img-wrap">
+                <div className="sc-cat-img-wrap">
                   <img src={cat.image} alt={cat.name} loading="lazy" />
                 </div>
-                <div className="cat-card-body">
-                  <h3>{cat.name}</h3>
-                  <span className="cat-card-link">
-                    Shop <ArrowUpRight size={15} />
-                  </span>
+                <div className="sc-cat-label">
+                  <span>{cat.name}</span>
+                  <ArrowUpRight size={14} className="sc-cat-arrow" />
                 </div>
               </Link>
             ))}
@@ -283,175 +284,28 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── EDITORIAL BANNER ──────────────────────────────────────── */}
-      <section className="editorial-banner">
-        <div className="eb-image">
-          <img
-            src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=900&h=700&fit=crop&q=85"
-            alt="Crafted with precision"
-            loading="lazy"
-          />
-        </div>
-        <div className="eb-content reveal-up">
-          <span className="section-v2-tag">Our Philosophy</span>
-          <h2>Crafted with<br /><em>Precision &amp; Heart</em></h2>
-          <p>
-            Every piece in our catalogue is sourced from trusted makers who share our
-            commitment to quality, ethics, and enduring style. From hallmarked gold to
-            certified diamonds — trade with confidence.
-          </p>
-          <Link to={isAuthenticated ? '/catalogue' : '/register'} className="btn-editorial">
-            Explore the Range <ArrowRight size={16} />
-          </Link>
-        </div>
-      </section>
-
-      {/* ── FEATURED PRODUCTS ─────────────────────────────────────── */}
-      {isAuthenticated && featured.length > 0 && (
-        <section className="section-v2 section-v2-alt">
-          <div className="container">
-            <div className="section-v2-row reveal-up">
-              <div>
-                <span className="section-v2-tag">Handpicked</span>
-                <h2 className="section-v2-title">Featured Products</h2>
-              </div>
-              <Link to="/catalogue" className="btn-text-link">
-                View All <ArrowRight size={16} />
-              </Link>
-            </div>
-            <div className="product-grid-v2">
-              {featured.slice(0, 8).map((p, i) => (
-                <div key={p.id} className="prod-card-anim">
-                  <ProductCard product={p} />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* ── COLLECTIONS ───────────────────────────────────────────── */}
-      <section className="section-v2">
+      {/* ── 6. UPCOMING SHOWS / EVENTS ─────────────────────────────── */}
+      <section className="sc-shows">
         <div className="container">
-          <div className="section-v2-header reveal-up">
-            <span className="section-v2-tag">Curated for Retailers</span>
-            <h2 className="section-v2-title">Our Collections</h2>
-            <div className="section-v2-line" />
+          <div className="sc-section-head sc-reveal">
+            <span className="sc-eyebrow">Find Us In Person</span>
+            <h2 className="sc-section-title">Upcoming Shows &amp; Events</h2>
+            <div className="sc-section-rule" />
           </div>
-          <div className="collections-v2-grid">
-            {collections.map((col, i) => (
-              <Link
-                to={isAuthenticated ? `/catalogue?collection=${col.id}` : '/login'}
-                key={col.id}
-                className={`col-card-v2 col-card-anim ${i === 0 ? 'col-card-large' : ''}`}
-              >
-                <div className="col-card-img">
-                  <img src={col.image} alt={col.name} loading="lazy" />
+
+          <div className="sc-shows-list">
+            {SHOWS.map((show, i) => (
+              <div className="sc-show-item sc-reveal" key={i}>
+                <div className="sc-show-num">{String(i + 1).padStart(2, '0')}</div>
+                <div className="sc-show-info">
+                  <h3 className="sc-show-name">{show.name}</h3>
+                  <p className="sc-show-meta">{show.date} &nbsp;·&nbsp; {show.location}</p>
                 </div>
-                <div className="col-card-overlay">
-                  <div className="col-card-info">
-                    <h3>{col.name}</h3>
-                    <p>{col.description}</p>
-                    <span className="col-card-cta">
-                      Explore <ArrowUpRight size={16} />
-                    </span>
-                  </div>
-                </div>
-              </Link>
+                <Link to="/contact" className="sc-show-cta">
+                  Book Appointment <ArrowRight size={15} />
+                </Link>
+              </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── NEW ARRIVALS ──────────────────────────────────────────── */}
-      {isAuthenticated && newArrivals.length > 0 && (
-        <section className="section-v2 section-v2-alt">
-          <div className="container">
-            <div className="section-v2-row reveal-up">
-              <div>
-                <span className="section-v2-tag">Just Landed</span>
-                <h2 className="section-v2-title">New Arrivals</h2>
-              </div>
-              <Link to="/new-arrivals" className="btn-text-link">
-                See All <ArrowRight size={16} />
-              </Link>
-            </div>
-            <div className="product-grid-v2">
-              {newArrivals.slice(0, 4).map(p => (
-                <div key={p.id} className="prod-card-anim">
-                  <ProductCard product={p} />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* ── STATS ROW ─────────────────────────────────────────────── */}
-      <section className="stats-section" ref={statsRef}>
-        <div className="container stats-inner">
-          {[
-            { val: 45, suffix: '+', label: 'Years of Excellence' },
-            { val: 1000, suffix: '+', label: 'Jewellery Pieces' },
-            { val: 500, suffix: '+', label: 'Trade Partners' },
-            { val: 99, suffix: '%', label: 'Customer Satisfaction' },
-          ].map((s, i) => (
-            <div className="stat-block reveal-up" key={i}>
-              <span className="stat-number">
-                <Counter to={s.val} suffix={s.suffix} />
-              </span>
-              <span className="stat-label">{s.label}</span>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── CTA BANNER (non-auth) ─────────────────────────────────── */}
-      {!isAuthenticated && (
-        <section className="cta-v2">
-          <div className="cta-v2-bg">
-            <img
-              src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=1600&h=600&fit=crop&q=85"
-              alt="Join our trade network"
-              loading="lazy"
-            />
-          </div>
-          <div className="cta-v2-overlay" />
-          <div className="container cta-v2-body">
-            <div className="cta-v2-content reveal-up">
-              <span className="section-v2-tag" style={{ color: '#d4a843' }}>Trade Partnership</span>
-              <h2>Ready to Partner<br />with Us?</h2>
-              <p>
-                Join hundreds of independent retailers who trust G&amp;J Lumley for their
-                wholesale jewellery needs. Open a trade account today.
-              </p>
-              <div className="cta-v2-actions">
-                <Link to="/register" className="btn-hero-primary">
-                  Apply for Trade Account <ArrowRight size={18} />
-                </Link>
-                <Link to="/about" className="btn-hero-ghost">
-                  Learn More
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* ── TESTIMONIAL ───────────────────────────────────────────── */}
-      <section className="testimonial-v2">
-        <div className="container">
-          <div className="testimonial-v2-inner reveal-up">
-            <div className="testimonial-v2-quote-mark">"</div>
-            <blockquote>
-              G&amp;J Lumley has been our primary wholesale supplier for over fifteen years.
-              Their quality is consistently excellent, and their dedicated sales team
-              understands exactly what our customers want.
-            </blockquote>
-            <div className="testimonial-v2-author">
-              <div className="author-line" />
-              <cite>Margaret Hayes — Hayes Fine Jewellers, Chester</cite>
-            </div>
           </div>
         </div>
       </section>
