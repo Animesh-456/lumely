@@ -140,7 +140,7 @@ export default function About() {
         <div className="ow-tagline-container">
           <div className="ow-tagline-overlap">
             <span className="ow-pre-tagline">Est. 1954</span>
-            <h1>Crafting Bridal &amp; Fine Jewellery<br />For Independent Jewellers Since 1954</h1>
+            <h1>Crafting Jewellery Across Generations</h1>
           </div>
         </div>
       </section>
