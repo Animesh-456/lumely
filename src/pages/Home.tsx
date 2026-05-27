@@ -15,17 +15,17 @@ gsap.registerPlugin(ScrollTrigger)
 const HERO_SLIDES = [
   {
     image: 'https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=1920&h=1000&fit=crop&q=90',
-    label: 'Crafted Since 1954',
+    heading: 'A Legacy Of Fine Jewellery',
     collection: 'eternal-classics',
   },
   {
     image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=1920&h=1000&fit=crop&q=90',
-    label: 'Personalised Service, Faster Turnarounds',
+    heading: 'Personalised Service, Faster Turnarounds',
     collection: 'modern-elegance',
   },
   {
     image: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=1920&h=1000&fit=crop&q=90',
-    label: 'Designed Around Every Love Story',
+    heading: 'Designed Around Every Love Story',
     collection: 'bridal',
   },
 ]
@@ -81,11 +81,8 @@ function HeroSlider() {
 
       {/* Hero text — bottom left like Shy Creation */}
       <div className="sc-hero-content container">
-        <p className="sc-hero-label">{HERO_SLIDES[current].label}</p>
         <h1 className="sc-hero-heading">
-          Exceptional<br />
-          <em>Jewellery</em><br />
-          for Retailers
+          {HERO_SLIDES[current].heading}
         </h1>
         <Link to={`/catalogue?collection=${HERO_SLIDES[current].collection}`} className="sc-hero-cta">
           Explore Collection <ArrowRight size={16} />

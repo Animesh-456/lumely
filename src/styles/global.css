@@ -4338,6 +4338,43 @@ h3 {
 .sc-cat-arrow { opacity: 0; transform: translateX(-4px); transition: all 0.2s; }
 .sc-cat-card:hover .sc-cat-arrow { opacity: 1; transform: translateX(0); color: #b8860b; }
 
+/* Text-only category grid (no images) */
+.sc-cat-grid-text {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: #e8e6e3;
+  border: 1px solid #e8e6e3;
+}
+.sc-cat-text-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 2.25rem;
+  background: #faf9f7;
+  text-decoration: none;
+  transition: background 0.25s, color 0.25s;
+}
+.sc-cat-text-card:hover {
+  background: #1a1a1a;
+}
+.sc-cat-text-card:hover .sc-cat-text-name {
+  color: #fff;
+}
+.sc-cat-text-card:hover .sc-cat-arrow {
+  opacity: 1;
+  transform: translateX(0);
+  color: #b8860b;
+}
+.sc-cat-text-name {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: #1a1a1a;
+  transition: color 0.25s;
+}
+
 /* Upcoming Shows */
 .sc-shows { padding: 6rem 0; background: #0f1c16; color: #fff; }
 .sc-shows .sc-section-title { color: #fff; }
