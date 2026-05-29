@@ -14,17 +14,17 @@ gsap.registerPlugin(ScrollTrigger)
 /* ── Hero Slider ──────────────────────────────────────────────────────── */
 const HERO_SLIDES = [
   {
-    image: 'https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=1920&h=1000&fit=crop&q=90',
+    image: '/banner1.jpg',
     heading: 'A Legacy Of Fine Jewellery',
     collection: 'eternal-classics',
   },
   {
-    image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=1920&h=1000&fit=crop&q=90',
+    image: '/banner2.png',
     heading: 'Personalised Service, Faster Turnarounds',
     collection: 'modern-elegance',
   },
   {
-    image: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=1920&h=1000&fit=crop&q=90',
+    image: '/banner3.jpg',
     heading: 'Designed Around Every Love Story',
     collection: 'bridal',
   },

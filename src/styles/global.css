@@ -4034,19 +4034,22 @@ h3 {
   min-height: 560px;
   max-height: 860px;
   overflow: hidden;
-  background: #111;
+  background: #ffffff;
 }
 .sc-hero-slide {
   position: absolute;
   inset: 0;
   opacity: 0;
   transition: opacity 0.9s ease;
+  background: #ffffff;
 }
 .sc-hero-slide img {
   width: 100%; height: 100%;
-  object-fit: cover;
-  transform: scale(1.04);
+  object-fit: contain;
+  display: block;
+  transform: scale(1.02);
   transition: transform 6s ease;
+  background: #ffffff;
 }
 .sc-hero-slide-active {
   opacity: 1;
@@ -4057,7 +4060,7 @@ h3 {
 
 .sc-hero-overlay {
   position: absolute; inset: 0; z-index: 3;
-  background: linear-gradient(to top, rgba(10,10,10,0.6) 0%, rgba(10,10,10,0.15) 50%, transparent 100%);
+  background: linear-gradient(to top, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.2) 50%, transparent 80%);
 }
 .sc-hero-content {
   position: absolute;
@@ -4081,6 +4084,7 @@ h3 {
   line-height: 1.1;
   color: #fff;
   margin-bottom: 1.75rem;
+  max-width: 650px;
 }
 .sc-hero-heading em { font-style: italic; color: #d4a843; }
 .sc-hero-cta {
@@ -4560,6 +4564,11 @@ h3 {
   .sc-cat-grid { grid-template-columns: repeat(2, 1fr); }
   .sc-shows-grid { grid-template-columns: 1fr; }
   .sc-hero { height: 70vh; min-height: 420px; }
+  .sc-hero-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
   .sc-hero-content { bottom: 5rem; }
   .sc-hero-heading { font-size: 2.4rem; }
   .sc-full-banner { height: 380px; }
