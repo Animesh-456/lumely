@@ -257,6 +257,7 @@ export default function Home() {
       </section>
 
       {/* ── 6. UPCOMING SHOWS / EVENTS ─────────────────────────────── */}
+      {/*
       <section className="sc-shows">
         <div className="container">
           <div className="sc-section-head sc-reveal">
@@ -279,6 +280,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      */}
 
     </div>
   )
