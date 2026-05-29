@@ -8,9 +8,8 @@ export default function Footer() {
       <div className="sc-footer-inner container">
         {/* Left: Logo + social */}
         <div className="sc-footer-brand">
-          <Link to="/" className="sc-footer-logo">
-            <span className="sc-footer-logo-text">G&J Lumley</span>
-            <span className="sc-footer-logo-sub">Wholesale Jewellery</span>
+          <Link to="/" className="sc-footer-logo" aria-label="G&J Lumley Home">
+            <img src="/logo.jpg" alt="G&J Lumley" className="sc-footer-logo-img" />
           </Link>
           <p className="sc-footer-tagline">
             Trusted UK wholesale jewellery supplier since 1978.

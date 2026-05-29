@@ -72,7 +72,7 @@ function HeroSlider() {
           className={`sc-hero-slide ${i === current ? 'sc-hero-slide-active' : ''} ${i === prev ? 'sc-hero-slide-prev' : ''}`}
           aria-hidden={i !== current}
         >
-          <img src={slide.image} alt={slide.label} />
+          <img src={slide.image} alt={slide.heading} />
         </div>
       ))}
 

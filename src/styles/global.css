@@ -4805,3 +4805,28 @@ h3 {
   .ow-advantage-card { padding: 2rem; }
   .ow-service-content h2 { font-size: 2.5rem; }
 }
+
+/* Logo image styles */
+.sc-logo-img {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.sc-footer-logo-img {
+  height: 44px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  filter: invert(1);
+}
+
+.auth-logo-img {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  margin-bottom: 2rem;
+}
+

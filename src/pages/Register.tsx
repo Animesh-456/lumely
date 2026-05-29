@@ -40,7 +40,9 @@ export default function Register() {
         </div>
         <div className="auth-form-wrapper">
           <div className="auth-form-inner">
-            <Link to="/" className="auth-logo">G&J Lumley</Link>
+            <Link to="/">
+              <img src="/logo.jpg" alt="G&J Lumley" className="auth-logo-img" />
+            </Link>
             <h1>Trade Account Application</h1>
             <p className="auth-subtitle">Fill in your details to apply for a wholesale account</p>
 

@@ -58,8 +58,7 @@ export default function Header() {
 
           {/* Logo — absolute center on desktop */}
           <Link to="/" className="sc-logo" aria-label="G&J Lumley Home">
-            <span className="sc-logo-text">G&J Lumley</span>
-            <span className="sc-logo-sub">Wholesale Jewellery</span>
+            <img src="/logo.jpg" alt="G&J Lumley" className="sc-logo-img" />
           </Link>
 
           {/* Right actions */}

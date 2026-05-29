@@ -41,7 +41,9 @@ export default function Login() {
         </div>
         <div className="auth-form-wrapper">
           <div className="auth-form-inner">
-            <Link to="/" className="auth-logo">G&J Lumley</Link>
+            <Link to="/">
+              <img src="/logo.jpg" alt="G&J Lumley" className="auth-logo-img" />
+            </Link>
             <h1>Trade Login</h1>
             <p className="auth-subtitle">Sign in to your retailer account</p>
 
