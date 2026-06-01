@@ -157,20 +157,25 @@ export default function Home() {
       {/* ── 2. BRAND INTRO ──────────────────────────────────────────── */}
       <section className="sc-brand-intro">
         <div className="container">
-          <div className="sc-brand-intro-inner sc-reveal">
-            <span className="sc-eyebrow">Est. 1954 · Birmingham, UK</span>
-            <h2 className="sc-brand-intro-heading">
-              Fine Wholesale Jewellery,<br />
-              <em>Crafted for Retailers</em>
-            </h2>
-            <p className="sc-brand-intro-text">
-              Established in 1954, G&amp;J Lumley has built lasting partnerships with
-              independent jewellers across the UK and Ireland through craftsmanship,
-              precision, and personalised service.
-            </p>
-            <Link to="/about" className="sc-text-link">
-              Read More <ArrowUpRight size={15} />
-            </Link>
+          <div className="sc-brand-intro-split sc-reveal">
+            <div className="sc-brand-intro-content">
+              <span className="sc-eyebrow">Est. 1954 · Birmingham, UK</span>
+              <h2 className="sc-brand-intro-heading">
+                Fine Wholesale Jewellery,<br />
+                <em>Crafted for Retailers</em>
+              </h2>
+              <p className="sc-brand-intro-text">
+                Established in 1954, G&amp;J Lumley has built lasting partnerships with
+                independent jewellers across the UK and Ireland through craftsmanship,
+                precision, and personalised service.
+              </p>
+              <Link to="/about" className="sc-text-link">
+                Read More <ArrowUpRight size={15} />
+              </Link>
+            </div>
+            <div className="sc-brand-intro-img">
+              <img src="/brand-intro.jpg" alt="Fine Wholesale Jewellery" />
+            </div>
           </div>
         </div>
       </section>
