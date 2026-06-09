@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Search, Globe, Heart, User, Menu, X, ChevronDown } from 'lucide-react'
+import { Search, Menu, X, ChevronDown } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 
 export default function Header() {
@@ -9,16 +9,13 @@ export default function Header() {
   const [searchOpen, setSearchOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [worldOpen, setWorldOpen] = useState(false)
-  const [userOpen, setUserOpen] = useState(false)
   const worldRef = useRef<HTMLDivElement>(null)
-  const userRef = useRef<HTMLDivElement>(null)
   const navigate = useNavigate()
 
   // Close dropdowns on outside click
   useEffect(() => {
     function handleClick(e: MouseEvent) {
       if (worldRef.current && !worldRef.current.contains(e.target as Node)) setWorldOpen(false)
-      if (userRef.current && !userRef.current.contains(e.target as Node)) setUserOpen(false)
     }
     document.addEventListener('mousedown', handleClick)
     return () => document.removeEventListener('mousedown', handleClick)
@@ -63,56 +60,26 @@ export default function Header() {
 
           {/* Right actions */}
           <div className="sc-header-actions">
-            <button
-              className="sc-icon-btn"
-              onClick={() => setSearchOpen(!searchOpen)}
-              aria-label="Search"
-            >
-              <Search size={18} />
-            </button>
-            <button className="sc-icon-btn" aria-label="Region">
-              <Globe size={18} />
-            </button>
-            <button className="sc-icon-btn" aria-label="Wishlist">
-              <Heart size={18} />
-            </button>
-
             {isAuthenticated ? (
-              <div className="sc-user-wrapper" ref={userRef}>
+              <>
+                <Link to="/account" className="sc-retailer-btn">
+                  My Account
+                </Link>
                 <button
-                  className="sc-icon-btn"
-                  onClick={() => setUserOpen(!userOpen)}
-                  aria-label="Account"
+                  onClick={() => { logout(); navigate('/') }}
+                  className="sc-retailer-btn sc-signout-btn"
                 >
-                  <User size={18} />
+                  Sign Out
                 </button>
-                {userOpen && (
-                  <div className="sc-user-dropdown">
-                    <div className="sc-user-header">
-                      <p className="sc-user-name">{user?.contactName}</p>
-                      <p className="sc-user-company">{user?.companyName}</p>
-                    </div>
-                    <Link to="/account" onClick={() => setUserOpen(false)}>My Account</Link>
-                    <Link to="/catalogue" onClick={() => setUserOpen(false)}>Catalogue</Link>
-                    <Link to="/account?tab=orders" onClick={() => setUserOpen(false)}>Order History</Link>
-                    <button onClick={() => { logout(); setUserOpen(false); navigate('/') }}>
-                      Sign Out
-                    </button>
-                  </div>
-                )}
-              </div>
+              </>
             ) : (
-              <button className="sc-icon-btn" aria-label="Account">
-                <User size={18} />
-              </button>
+              <Link
+                to="/login"
+                className="sc-retailer-btn"
+              >
+                Retailer Login
+              </Link>
             )}
-
-            <Link
-              to="/login"
-              className="sc-retailer-btn"
-            >
-              Retailer Login
-            </Link>
           </div>
         </div>
 
@@ -152,6 +119,27 @@ export default function Header() {
             <Link to="/contact" className="sc-nav-link" onClick={() => setMobileOpen(false)}>
               Connect With Us
             </Link>
+
+            {isAuthenticated ? (
+              <>
+                <Link to="/catalogue" className="sc-nav-link" onClick={() => setMobileOpen(false)}>
+                  Catalogue
+                </Link>
+                <Link to="/account" className="sc-nav-link sc-mobile-only" onClick={() => setMobileOpen(false)}>
+                  My Account
+                </Link>
+                <button
+                  className="sc-nav-link sc-mobile-only"
+                  onClick={() => { logout(); setMobileOpen(false); navigate('/') }}
+                >
+                  Sign Out
+                </button>
+              </>
+            ) : (
+              <Link to="/login" className="sc-nav-link sc-mobile-only" onClick={() => setMobileOpen(false)}>
+                Retailer Login
+              </Link>
+            )}
           </div>
         </nav>
 
