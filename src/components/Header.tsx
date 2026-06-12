@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Search, Menu, X, ChevronDown } from 'lucide-react'
+import { Search, Menu, X } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 
 export default function Header() {
@@ -8,18 +8,7 @@ export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
-  const [worldOpen, setWorldOpen] = useState(false)
-  const worldRef = useRef<HTMLDivElement>(null)
   const navigate = useNavigate()
-
-  // Close dropdowns on outside click
-  useEffect(() => {
-    function handleClick(e: MouseEvent) {
-      if (worldRef.current && !worldRef.current.contains(e.target as Node)) setWorldOpen(false)
-    }
-    document.addEventListener('mousedown', handleClick)
-    return () => document.removeEventListener('mousedown', handleClick)
-  }, [])
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
@@ -30,14 +19,6 @@ export default function Header() {
       setMobileOpen(false)
     }
   }
-
-  const ourWorldLinks = [
-    { label: 'Brand Write Up', href: '/about#brand' },
-    { label: 'Craftsmanship', href: '/about#craftsmanship' },
-    { label: 'The Lumley Advantage', href: '/about#advantage' },
-    { label: 'Retailer Experience', href: '/about#retailer' },
-    { label: 'Personal Service', href: '/about#service' },
-  ]
 
   return (
     <>
@@ -90,30 +71,9 @@ export default function Header() {
               Home
             </Link>
 
-            {/* OUR WORLD dropdown */}
-            <div className="sc-nav-dropdown" ref={worldRef}>
-              <button
-                className={`sc-nav-link sc-nav-trigger ${worldOpen ? 'active' : ''}`}
-                onClick={() => setWorldOpen(!worldOpen)}
-                aria-expanded={worldOpen}
-              >
-                Our World <ChevronDown size={13} className={`sc-chevron ${worldOpen ? 'rotated' : ''}`} />
-              </button>
-              {worldOpen && (
-                <div className="sc-dropdown-menu">
-                  {ourWorldLinks.map(l => (
-                    <Link
-                      key={l.href}
-                      to={l.href}
-                      className="sc-dropdown-item"
-                      onClick={() => { setWorldOpen(false); setMobileOpen(false) }}
-                    >
-                      {l.label}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
+            <Link to="/about" className="sc-nav-link" onClick={() => setMobileOpen(false)}>
+              Our World
+            </Link>
 
 
             <Link to="/contact" className="sc-nav-link" onClick={() => setMobileOpen(false)}>

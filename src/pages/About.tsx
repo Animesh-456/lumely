@@ -297,7 +297,7 @@ export default function About() {
                 ))}
               </ul>
               <Link to="/register" className="ow-btn ow-btn-gold">
-                Apply for Trade Access <ArrowRight size={16} />
+                Register Now <ArrowRight size={16} />
               </Link>
             </div>
           </div>

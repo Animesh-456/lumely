@@ -200,7 +200,7 @@ export default function Home() {
               </div>
               <div className="sc-section-action sc-reveal">
                 <Link to="/catalogue" className="sc-btn-outline">
-                  View Full Catalogue <ArrowRight size={16} />
+                  Browse Now <ArrowRight size={16} />
                 </Link>
               </div>
             </>
@@ -220,16 +220,6 @@ export default function Home() {
           />
         </div>
         <div className="sc-full-banner-overlay" />
-        <div className="sc-full-banner-content container">
-          <div className="sc-reveal">
-
-            <span className="sc-eyebrow" style={{ color: '#d4a843' }}>Behind the Scenes</span>
-            <h2 className="sc-full-banner-heading">The Art of Craftsmanship</h2>
-            <p className="sc-full-banner-sub">
-              Watch how our master jewellers bring every piece to life with precision and passion.
-            </p>
-          </div>
-        </div>
       </section>
 
       {/* ── 5. SHOP BY CATEGORY / CRAFTSMANSHIP ────────────────────── */}

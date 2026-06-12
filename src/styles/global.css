@@ -3829,7 +3829,7 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 72px;
+  height: 90px;
   position: relative;
 }
 
@@ -3890,14 +3890,14 @@ h3 {
   font-weight: 500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  background: #c8a97e;
+  background: #b8860b;
   color: #fff;
   border-radius: 2px;
   transition: background 0.2s;
   white-space: nowrap;
   text-decoration: none;
 }
-.sc-retailer-btn:hover { background: #a8895e; }
+.sc-retailer-btn:hover { background: #8b6508; }
 
 /* User dropdown */
 .sc-user-wrapper { position: relative; }
@@ -3942,8 +3942,9 @@ h3 {
   gap: 0;
   height: 46px;
 }
+
 .sc-nav-link {
-  padding: 0 1.4rem;
+  padding: 0 2.2rem;
   font-size: 0.82rem;
   font-weight: 400;
   letter-spacing: 0.07em;
@@ -4187,8 +4188,7 @@ h3 {
   aspect-ratio: 16/11;
   overflow: hidden;
   border-radius: 4px;
-  background: #ffffff;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  background: #faf9f7;
 }
 .sc-brand-intro-img img {
   width: 100%;
@@ -4229,7 +4229,7 @@ h3 {
 .sc-product-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 1.5rem;
+  gap: 0;
   margin-bottom: 3rem;
 }
 .sc-section-action { text-align: center; }
@@ -4701,11 +4701,11 @@ h3 {
 .ow-btn {
   display: inline-flex; align-items: center; gap: 8px;
   margin-top: 2rem; padding: 0.85rem 2.25rem;
-  background: #1a1a1a; color: #fff;
+  background: #b8860b; color: #fff;
   text-transform: uppercase; font-size: 0.78rem; letter-spacing: 0.1em;
   transition: background 0.3s;
 }
-.ow-btn:hover { background: #b8860b; }
+.ow-btn:hover { background: #8b6508; }
 .ow-btn-gold { background: #b8860b; }
 .ow-btn-gold:hover { background: #8b6508; }
 .ow-btn-outline-white {
@@ -4857,7 +4857,7 @@ h3 {
 
 /* Logo image styles */
 .sc-logo-img {
-  height: 48px;
+  height: 80px;
   width: auto;
   object-fit: contain;
   display: block;
