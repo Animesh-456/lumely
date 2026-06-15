@@ -4282,7 +4282,8 @@ h3 {
 
 .sc-brand-intro-split {
   display: grid;
-  grid-template-columns: 45% 55%;  /* More room for ring */
+  grid-template-columns: 45% 55%;
+  /* More room for ring */
   align-items: center;
   min-height: 560px;
 }
@@ -4324,10 +4325,13 @@ h3 {
 
 .sc-brand-intro-img img {
   position: absolute;
-  width: 150%;         /* Large — ring setting fills upper-right corner */
+  width: 150%;
+  /* Large — ring setting fills upper-right corner */
   height: auto;
-  top: -120px;         /* Push ring up so setting overflows section top */
-  right: -70px;        /* Bleed beyond section right edge */
+  top: -120px;
+  /* Push ring up so setting overflows section top */
+  right: -70px;
+  /* Bleed beyond section right edge */
   left: auto;
   display: block;
 }
@@ -4935,7 +4939,7 @@ h3 {
 
 @media (max-width: 768px) {
   .sc-header-main {
-    height: 60px;
+    height: 80px;
   }
 
   .sc-logo {
