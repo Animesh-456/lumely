@@ -5566,6 +5566,7 @@ h3 {
   grid-template-columns: 1fr 1fr;
   gap: 6rem;
   align-items: start;
+  padding: 0 7rem 0 7rem;
 }
 
 .ow-ret-heading {
@@ -5827,7 +5828,8 @@ h3 {
   background: #f5f3ef;
   font-family: Georgia, 'Times New Roman', serif;
   position: relative;
-  height: 300vh; /* 3 steps = 300vh total scrollable height */
+  height: 300vh;
+  /* 3 steps = 300vh total scrollable height */
 }
 
 /* ── Left sticky panel ── */
@@ -5926,7 +5928,7 @@ h3 {
 }
 
 .step-title {
-  font-size: 32px;
+  font-size: 40px;
   font-weight: 400;
   color: #1a1a1a;
   margin: 0 0 20px;
@@ -5987,7 +5989,7 @@ h3 {
     height: auto !important;
     flex-direction: column;
   }
-  
+
   .lumley-left {
     position: relative !important;
     height: auto !important;
