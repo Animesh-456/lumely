@@ -22,13 +22,10 @@ export const categories = [
   { id: 'rings', name: 'Rings', image: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=600&h=600&fit=crop' },
   { id: 'necklaces', name: 'Necklaces', image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&h=600&fit=crop' },
   { id: 'earrings', name: 'Earrings', image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600&h=600&fit=crop' },
-  { id: 'bracelets', name: 'Bracelets', image: 'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=600&h=600&fit=crop' },
   { id: 'pendants', name: 'Pendants', image: 'https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?w=600&h=600&fit=crop' },
-  { id: 'wedding', name: 'Wedding Bands', image: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?w=600&h=600&fit=crop' },
 ]
 
 export const collections = [
-  { id: 'eternal-classics', name: 'Eternal Classics', description: 'Timeless designs that never go out of style', image: 'https://images.unsplash.com/photo-1617038220319-276d3cfab638?w=800&h=500&fit=crop' },
   { id: 'modern-elegance', name: 'Modern Elegance', description: 'Contemporary pieces for the modern retailer', image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&h=500&fit=crop' },
   { id: 'heritage', name: 'Heritage Collection', description: 'Inspired by traditional British craftsmanship', image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&h=500&fit=crop' },
   { id: 'bridal', name: 'Bridal Collection', description: 'Exquisite pieces for the most special day', image: 'https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?w=800&h=500&fit=crop' },
