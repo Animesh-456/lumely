@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { Search, Menu, X } from 'lucide-react'
+import { Search, Menu, X, Globe, Heart, User } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 
 export default function Header() {
@@ -41,6 +41,31 @@ export default function Header() {
 
           {/* Right actions */}
           <div className="sc-header-actions">
+            {/* Icon group: Search, Browse, Wishlist, User */}
+            <button
+              className="sc-icon-btn"
+              onClick={() => setSearchOpen(!searchOpen)}
+              aria-label="Search"
+            >
+              <Search size={18} />
+            </button>
+            <button className="sc-icon-btn" aria-label="Browse">
+              <Globe size={18} />
+            </button>
+            <button className="sc-icon-btn" aria-label="Wishlist">
+              <Heart size={18} />
+            </button>
+            {isAuthenticated ? (
+              <Link to="/account" className="sc-icon-btn" aria-label="My Account">
+                <User size={18} />
+              </Link>
+            ) : (
+              <button className="sc-icon-btn" aria-label="Account">
+                <User size={18} />
+              </button>
+            )}
+
+            {/* Retailer Login / Account buttons */}
             {isAuthenticated ? (
               <>
                 <Link to="/account" className="sc-retailer-btn">
@@ -78,6 +103,10 @@ export default function Header() {
 
             <Link to="/contact" className="sc-nav-link" onClick={() => setMobileOpen(false)}>
               Connect With Us
+            </Link>
+
+            <Link to="/contact" className="sc-nav-link" onClick={() => setMobileOpen(false)}>
+              Our Collections
             </Link>
 
             {isAuthenticated ? (
