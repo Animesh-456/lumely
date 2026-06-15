@@ -4283,7 +4283,8 @@ h3 {
 
 .sc-brand-intro-split {
   display: grid;
-  grid-template-columns: 45% 55%;
+  grid-template-columns: 45% 20%;
+  justify-content: center;
   /* More room for ring */
   align-items: center;
   min-height: 560px;
