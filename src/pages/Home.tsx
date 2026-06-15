@@ -15,17 +15,17 @@ gsap.registerPlugin(ScrollTrigger)
 const HERO_SLIDES = [
   {
     image: '/banner1.jpg',
-    heading: 'A Legacy Of Fine Jewellery',
+    heading: '',
     collection: 'eternal-classics',
   },
   {
-    image: '/banner2.png',
-    heading: 'Personalised Service, Faster Turnarounds',
+    image: '/banner2.jpg',
+    heading: '',
     collection: 'modern-elegance',
   },
   {
     image: '/banner3.jpg',
-    heading: 'Designed Around Every Love Story',
+    heading: '',
     collection: 'bridal',
   },
 ]
