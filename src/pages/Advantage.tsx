@@ -64,30 +64,60 @@ export default function LumleyAdvantage() {
 
   return (
     <section className="lumley-section" id="advantage" ref={sectionRef}>
-      {/* ── Left sticky panel ── */}
-      <div className="lumley-left">
-        <p className="lumley-eyebrow">Why Choose Us</p>
-        <h2 className="lumley-heading">The Lumley<br />Advantage</h2>
-        <p className="lumley-desc">
-          With decades of industry expertise and strong retailer relationships
-          across the UK and Ireland, G&amp;J Lumley offers more than fine
-          jewellery — we offer reliability, flexibility, and personalised support.
-        </p>
-        <img src="/ow-bridal.jpg" alt="Lumley Bridal Collection" className="lumley-img" />
-      </div>
-
-      {/* ── Right sticky panel (with absolute children) ── */}
-      <div className="lumley-right">
-        {steps.map((step, i) => (
-          <div
-            key={step.num}
-            className={`lumley-step${activeStep === i ? ' active' : ''}`}
-          >
-            <p className="step-num">{step.num}</p>
-            <h3 className="step-title">{step.title}</h3>
-            <p className="step-body">{step.body}</p>
+      <div className="lumley-container">
+        {/* ── Left sticky panel ── */}
+        <div className="lumley-left">
+          <p className="lumley-eyebrow">Why Choose Us</p>
+          <h2 className="lumley-heading">The Lumley<br />Advantage</h2>
+          <p className="lumley-desc">
+            With decades of industry expertise and strong retailer relationships
+            across the UK and Ireland, G&amp;J Lumley offers more than fine
+            jewellery — we offer reliability, flexibility, and personalised support.
+          </p>
+          <div className="lumley-img-wrapper">
+            <img src="/ow-bridal.jpg" alt="Lumley Bridal Collection" className="lumley-img" />
           </div>
-        ))}
+        </div>
+
+        {/* ── Right sticky panel (with progress track & steps) ── */}
+        <div className="lumley-right">
+          {/* Vertical progress track */}
+          <div className="lumley-progress-track">
+            <div 
+              className="lumley-progress-bar" 
+              style={{ height: `${(activeStep / 2) * 100}%` }}
+            />
+            {steps.map((_, i) => (
+              <div
+                key={i}
+                className={`lumley-progress-dot${activeStep === i ? ' active' : ''}`}
+                onClick={() => {
+                  const section = sectionRef.current;
+                  if (!section) return;
+                  const sectionHeight = section.getBoundingClientRect().height;
+                  const totalScrollable = sectionHeight - window.innerHeight;
+                  if (totalScrollable > 0) {
+                    const scrollTarget = section.offsetTop + (i / 2) * totalScrollable;
+                    window.scrollTo({ top: scrollTarget, behavior: 'smooth' });
+                  }
+                }}
+              />
+            ))}
+          </div>
+
+          <div className="lumley-steps-wrapper">
+            {steps.map((step, i) => (
+              <div
+                key={step.num}
+                className={`lumley-step${activeStep === i ? ' active' : ''}`}
+              >
+                <span className="step-num">{step.num}</span>
+                <h3 className="step-title">{step.title}</h3>
+                <p className="step-body">{step.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* ── Invisible scroll snap anchors ── */}
