@@ -4,7 +4,6 @@ interface Step {
   num: string
   title: string
   body: string
-  tags: string[]
 }
 
 const steps: Step[] = [
@@ -12,19 +11,16 @@ const steps: Step[] = [
     num: '01',
     title: 'Bespoke Bridal Expertise',
     body: 'From timeless solitaires to custom bridal designs, our collections are thoughtfully developed to meet evolving customer preferences while maintaining exceptional craftsmanship and quality.',
-    tags: ['Bridal', 'Diamond', 'Custom'],
   },
   {
     num: '02',
     title: 'Reliable Turnaround & Support',
     body: 'We combine efficient production timelines with responsive, personalised service — ensuring retailers receive consistent support at every stage of the process. Our team is always available.',
-    tags: ['Service', 'Support', 'Reliable'],
   },
   {
     num: '03',
     title: 'Designed For Independent Retailers',
     body: 'Every collection is curated with the independent jeweller in mind, balancing commercial appeal, contemporary design, and long-term retail value for your unique customer base.',
-    tags: ['Retail', 'Wholesale', 'B2B'],
   },
 ]
 
@@ -90,13 +86,6 @@ export default function LumleyAdvantage() {
             <p className="step-num">{step.num}</p>
             <h3 className="step-title">{step.title}</h3>
             <p className="step-body">{step.body}</p>
-            <div className="step-tags">
-              {step.tags.map((tag) => (
-                <span key={tag} className="step-tag">
-                  {tag}
-                </span>
-              ))}
-            </div>
           </div>
         ))}
       </div>
