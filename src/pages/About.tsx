@@ -3,12 +3,14 @@ import { Link, useLocation } from 'react-router-dom'
 import { ArrowRight, Check } from 'lucide-react'
 import gsap from 'gsap'
 import ScrollTrigger from 'gsap/ScrollTrigger'
+import LumleyAdvantage from './Advantage'
 
 gsap.registerPlugin(ScrollTrigger)
 
 export default function About() {
   const { hash } = useLocation()
   const pageRef = useRef<HTMLDivElement>(null)
+
 
   useEffect(() => {
     // Handle hash scrolling
@@ -186,60 +188,7 @@ export default function About() {
       </section>
 
       {/* ─── 4. LUMLEY ADVANTAGE (Sticky left, scroll cards right) ─── */}
-      <section id="advantage" className="ow-section ow-advantage">
-        <div className="container">
-          <div className="ow-sticky-layout">
-
-            {/* Left: Sticky heading + image */}
-            <div className="ow-sticky-left">
-              <div className="ow-sticky-content ow-reveal-left">
-                <span className="ow-eyebrow">Why Choose Us</span>
-                <h2 className="ow-adv-heading">THE LUMLEY<br />ADVANTAGE</h2>
-                <p className="ow-adv-intro">With decades of industry expertise and strong retailer relationships across the UK and Ireland, G&amp;J Lumley offers more than fine jewellery — we offer reliability, flexibility, and personalised support.</p>
-                <div className="ow-adv-image-wrap">
-                  <img src="/ow-bridal.jpg" alt="Lumley Bridal Collection" />
-                </div>
-              </div>
-            </div>
-
-            {/* Right: Scrolling cards */}
-            <div className="ow-scroll-right">
-              <div className="ow-advantage-card ow-reveal">
-                <div className="ow-adv-card-number">01</div>
-                <h3>Bespoke Bridal Expertise</h3>
-                <p>From timeless solitaires to custom bridal designs, our collections are thoughtfully developed to meet evolving customer preferences while maintaining exceptional craftsmanship and quality.</p>
-                <div className="ow-adv-card-footer">
-                  <span className="ow-adv-tag">Bridal</span>
-                  <span className="ow-adv-tag">Diamond</span>
-                  <span className="ow-adv-tag">Custom</span>
-                </div>
-              </div>
-
-              <div className="ow-advantage-card ow-reveal">
-                <div className="ow-adv-card-number">02</div>
-                <h3>Reliable Turnaround &amp; Support</h3>
-                <p>We combine efficient production timelines with responsive, personalised service — ensuring retailers receive consistent support at every stage of the process. Our team is always available.</p>
-                <div className="ow-adv-card-footer">
-                  <span className="ow-adv-tag">Service</span>
-                  <span className="ow-adv-tag">Support</span>
-                  <span className="ow-adv-tag">Reliable</span>
-                </div>
-              </div>
-
-              <div className="ow-advantage-card ow-reveal">
-                <div className="ow-adv-card-number">03</div>
-                <h3>Designed For Independent Retailers</h3>
-                <p>Every collection is curated with the independent jeweller in mind, balancing commercial appeal, contemporary design, and long-term retail value for your unique customer base.</p>
-                <div className="ow-adv-card-footer">
-                  <span className="ow-adv-tag">Retail</span>
-                  <span className="ow-adv-tag">Wholesale</span>
-                  <span className="ow-adv-tag">B2B</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <LumleyAdvantage />
 
       {/* ─── 5. STATS BAR ────────────────────────────────────── */}
       <section className="ow-stats-section">

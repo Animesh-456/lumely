@@ -46,6 +46,7 @@
 html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
+  scroll-snap-type: y proximity;
 }
 
 body {
@@ -5113,7 +5114,7 @@ h3 {
 .page-our-world {
   background: #fff;
   color: #1a1a1a;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* 1. HERO PARALLAX */
@@ -5306,6 +5307,101 @@ h3 {
   background: #faf9f7;
   padding: 8rem 0;
 }
+
+.ow-sticky-layout {
+  display: flex;
+  gap: 5rem;
+  align-items: flex-start;
+}
+
+.ow-sticky-left {
+  flex: 0 0 420px;
+  position: sticky;
+  top: 120px;
+}
+
+.ow-adv-heading {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(2.8rem, 4.5vw, 4rem);
+  font-weight: 400;
+  line-height: 1.05;
+  color: #1a1a1a;
+  margin: 0.75rem 0 1.5rem;
+}
+
+.ow-adv-intro {
+  font-size: 0.96rem;
+  line-height: 1.8;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.ow-adv-image-wrap {
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  margin-top: 2.5rem;
+}
+
+.ow-adv-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ow-scroll-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-bottom: 4rem;
+}
+
+.ow-advantage-card {
+  background: #fff;
+  padding: 2.5rem 3rem;
+  border-left: 3px solid #b8860b;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.ow-advantage-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.09);
+}
+
+.ow-adv-card-number {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 3rem;
+  font-weight: 300;
+  color: #e0dbd3;
+  line-height: 1;
+  margin-bottom: 0.75rem;
+}
+
+.ow-advantage-card h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.7rem;
+  font-weight: 500;
+  color: #1a1a1a;
+  margin-bottom: 0.9rem;
+}
+
+.ow-advantage-card p {
+  font-size: 0.95rem;
+  color: #666;
+  line-height: 1.75;
+  margin: 0 0 1.5rem;
+}
+
+
+
+/* 4. THE LUMLEY ADVANTAGE */
+.ow-advantage {
+  background: #faf9f7;
+  padding: 8rem 0;
+}
+
 
 .ow-sticky-layout {
   display: flex;
@@ -5600,6 +5696,8 @@ h3 {
   margin-bottom: 1rem;
 }
 
+
+
 /* RESPONSIVE */
 @media (max-width: 1024px) {
   .ow-split {
@@ -5718,4 +5816,231 @@ h3 {
 .sc-signout-btn:hover {
   background: #1a1a1a !important;
   color: #fff !important;
+}
+
+
+
+/* LUMELY ADVANTAGE FROM CLAUDE */
+
+.lumley-section {
+  display: flex;
+  background: #f5f3ef;
+  font-family: Georgia, 'Times New Roman', serif;
+  position: relative;
+  height: 300vh; /* 3 steps = 300vh total scrollable height */
+}
+
+/* ── Left sticky panel ── */
+.lumley-left {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  flex: 1;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 60px 80px;
+  box-sizing: border-box;
+}
+
+.lumley-eyebrow {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: #999;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.lumley-heading {
+  font-size: 48px;
+  line-height: 1.05;
+  font-weight: 400;
+  color: #1a1a1a;
+  margin: 0 0 24px;
+  letter-spacing: -0.01em;
+}
+
+.lumley-desc {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #666;
+  margin: 0 auto 32px;
+  max-width: 420px;
+}
+
+.lumley-img {
+  width: 100%;
+  max-width: 400px;
+  height: 250px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+/* ── Right sticky panel ── */
+.lumley-right {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  flex: 1;
+  width: 50%;
+  box-sizing: border-box;
+}
+
+.lumley-step {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 80px 80px;
+  box-sizing: border-box;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s;
+}
+
+.lumley-step.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.step-num {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 13px;
+  color: #c9a96e;
+  letter-spacing: 0.12em;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+.step-title {
+  font-size: 32px;
+  font-weight: 400;
+  color: #1a1a1a;
+  margin: 0 0 20px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.step-body {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.75;
+  color: #666;
+  margin: 0 auto 32px;
+  max-width: 560px;
+}
+
+.step-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.step-tag {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #888;
+  border: 1px solid #ccc;
+  padding: 5px 12px;
+  border-radius: 2px;
+}
+
+/* Invisible snap indicators */
+.lumley-snap-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.lumley-snap-anchor {
+  height: 100vh;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* Responsive Styles for Lumley Advantage */
+@media (max-width: 900px) {
+  html {
+    scroll-snap-type: none;
+  }
+
+  .lumley-section {
+    height: auto !important;
+    flex-direction: column;
+  }
+  
+  .lumley-left {
+    position: relative !important;
+    height: auto !important;
+    width: 100%;
+    min-width: unset;
+    padding: 60px 24px 40px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .lumley-heading {
+    font-size: 36px;
+    margin-bottom: 16px;
+  }
+
+  .lumley-desc {
+    max-width: 500px;
+    margin-bottom: 24px;
+  }
+
+  .lumley-img {
+    max-width: 500px;
+    height: 250px;
+  }
+
+  .lumley-right {
+    position: relative !important;
+    height: auto !important;
+    width: 100%;
+  }
+
+  .lumley-step {
+    position: relative !important;
+    height: auto !important;
+    padding: 48px 24px;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    scroll-snap-align: none;
+  }
+
+  .lumley-snap-container {
+    display: none;
+  }
+
+  .step-title {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+
+  .step-body {
+    font-size: 14px;
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
 }
