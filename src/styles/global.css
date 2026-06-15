@@ -4551,7 +4551,7 @@ h3 {
 .sc-full-banner-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, rgba(10, 10, 10, 0.72) 35%, rgba(10, 10, 10, 0.2) 100%);
+  background: none;
 }
 
 .sc-full-banner-content {
@@ -5682,9 +5682,9 @@ h3 {
 }
 
 .sc-footer-logo-img {
-  height: 44px;
+  height: 150px;
   width: auto;
-  object-fit: contain;
+  /* object-fit: contain; */
   display: block;
   filter: invert(1);
 }
