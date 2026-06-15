@@ -4914,6 +4914,7 @@ h3 {
 @media (max-width: 1024px) {
   .sc-product-grid {
     grid-template-columns: repeat(3, 1fr);
+    padding: 3rem 0;
   }
 
   .sc-cat-grid {
@@ -4934,6 +4935,14 @@ h3 {
     position: static;
     transform: none;
     margin: 0 auto;
+  }
+
+  .sc-logo-img {
+    height: 44px;
+  }
+
+  .sc-retailer-btn {
+    display: none;
   }
 
   .sc-mobile-toggle {
@@ -4987,10 +4996,13 @@ h3 {
 
   .sc-product-grid {
     grid-template-columns: repeat(2, 1fr);
+    padding: 2rem 0;
+    gap: 1rem;
   }
 
   .sc-cat-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
   }
 
   .sc-shows-grid {
@@ -5007,7 +5019,7 @@ h3 {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: left top;
+    object-position: center center;
   }
 
   /* Hide the empty h1 on mobile, only show CTA */
@@ -5018,13 +5030,15 @@ h3 {
   /* Button sits in bottom-right, well above the dots */
   .sc-hero-content {
     bottom: 3.5rem;
-    left: auto;
-    right: 1.25rem;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
     padding: 0;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: center;
     gap: 0;
+    width: auto;
   }
 
   .sc-hero-cta {
@@ -5056,16 +5070,15 @@ h3 {
 @media (max-width: 480px) {
   .sc-product-grid {
     grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+    padding: 1rem 0;
+    gap: 0.75rem;
   }
 
   .sc-cat-grid {
     grid-template-columns: 1fr 1fr;
   }
 
-  .sc-retailer-btn {
-    display: none;
-  }
+
 
   .sc-hero-heading {
     /* already hidden via 768px rule */
@@ -5074,8 +5087,6 @@ h3 {
 
   .sc-hero-content {
     bottom: 3rem;
-    right: 1rem;
-    padding: 0;
   }
 
   /* Dots stay centered at very bottom, well below button */

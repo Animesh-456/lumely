@@ -15,16 +15,19 @@ gsap.registerPlugin(ScrollTrigger)
 const HERO_SLIDES = [
   {
     image: '/banner1.jpg',
+    mobileImage: '/banner1.jpg',
     heading: '',
     collection: 'eternal-classics',
   },
   {
     image: '/banner2.jpg',
+    mobileImage: '/banner2.jpg',
     heading: '',
     collection: 'modern-elegance',
   },
   {
     image: '/banner3.jpg',
+    mobileImage: '/banner3.jpg',
     heading: '',
     collection: 'bridal',
   },
@@ -72,7 +75,10 @@ function HeroSlider() {
           className={`sc-hero-slide ${i === current ? 'sc-hero-slide-active' : ''} ${i === prev ? 'sc-hero-slide-prev' : ''}`}
           aria-hidden={i !== current}
         >
-          <img src={slide.image} alt={slide.heading} />
+          <picture>
+            <source media="(max-width: 768px)" srcSet={slide.mobileImage} />
+            <img src={slide.image} alt={slide.heading} />
+          </picture>
         </div>
       ))}
 
