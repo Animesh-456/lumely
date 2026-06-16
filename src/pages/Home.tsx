@@ -204,7 +204,7 @@ export default function Home() {
         <div className="sc-full-banner-img">
           <img src="/craftmanship.jpg" alt="Craftsmanship" />
         </div>
-        <div className="sc-full-banner-overlay" />
+        {/* <div className="sc-full-banner-overlay" /> */}
       </section>
 
       {/* ── 5. SHOP BY CATEGORY / CRAFTSMANSHIP ────────────────────── */}
