@@ -801,7 +801,7 @@ h3 {
 
 .product-card-name {
   font-family: var(--font-heading);
-  font-size: 1.05rem;
+  font-size: 17px;
   font-weight: 500;
   margin: 0.25rem 0;
   color: var(--color-primary);
@@ -5833,7 +5833,7 @@ h3 {
 
 .sc-footer-logo-img {
 
-  width: 300px;
+  width: 275px;
   /* object-fit: contain; */
   display: block;
 }
