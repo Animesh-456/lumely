@@ -199,16 +199,10 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── 4. FULL BANNER (Craftsmanship Video Placeholder) ──────────── */}
+      {/* ── 4. FULL BANNER (Craftsmanship Image) ────────────────────── */}
       <section className="sc-full-banner">
         <div className="sc-full-banner-img">
-          <video
-            src="/craftmanship.mp4"
-            autoPlay
-            loop
-            muted
-            playsInline
-          />
+          <img src="/craftmanship.jpg" alt="Craftsmanship" />
         </div>
         <div className="sc-full-banner-overlay" />
       </section>
