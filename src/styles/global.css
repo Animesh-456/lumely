@@ -4447,7 +4447,7 @@ h3 {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 1rem;
-  padding: 5rem;
+  padding: 0 2rem 0 2rem;
   margin-bottom: 3rem;
 }
 
