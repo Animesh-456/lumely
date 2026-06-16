@@ -35,52 +35,39 @@ const HERO_SLIDES = [
 
 function HeroSlider() {
   const [current, setCurrent] = useState(0)
-  const [prev, setPrev] = useState<number | null>(null)
-  const [animating, setAnimating] = useState(false)
-  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
   const goTo = (idx: number) => {
-    if (animating || idx === current) return
-    setAnimating(true)
-    setPrev(current)
     setCurrent(idx)
-    setTimeout(() => {
-      setPrev(null)
-      setAnimating(false)
-    }, 900)
   }
 
   useEffect(() => {
     timerRef.current = setInterval(() => {
-      setCurrent(c => {
-        const next = (c + 1) % HERO_SLIDES.length
-        setPrev(c)
-        setAnimating(true)
-        setTimeout(() => {
-          setPrev(null)
-          setAnimating(false)
-        }, 900)
-        return next
-      })
+      setCurrent(c => (c + 1) % HERO_SLIDES.length)
     }, 5000)
     return () => { if (timerRef.current) clearInterval(timerRef.current) }
   }, [])
 
   return (
     <section className="sc-hero">
-      {/* Slides */}
-      {HERO_SLIDES.map((slide, i) => (
-        <div
-          key={i}
-          className={`sc-hero-slide ${i === current ? 'sc-hero-slide-active' : ''} ${i === prev ? 'sc-hero-slide-prev' : ''}`}
-          aria-hidden={i !== current}
-        >
-          <picture>
-            <source media="(max-width: 768px)" srcSet={slide.mobileImage} />
-            <img src={slide.image} alt={slide.heading} />
-          </picture>
-        </div>
-      ))}
+      {/* Slides Track */}
+      <div
+        className="sc-hero-track"
+        style={{ transform: `translateX(-${current * 100}%)` }}
+      >
+        {HERO_SLIDES.map((slide, i) => (
+          <div
+            key={i}
+            className="sc-hero-slide"
+            aria-hidden={i !== current}
+          >
+            <picture>
+              <source media="(max-width: 768px)" srcSet={slide.mobileImage} />
+              <img src={slide.image} alt={slide.heading} />
+            </picture>
+          </div>
+        ))}
+      </div>
 
       {/* Subtle overlay */}
       <div className="sc-hero-overlay" />
@@ -90,9 +77,9 @@ function HeroSlider() {
         <h1 className="sc-hero-heading">
           {HERO_SLIDES[current].heading}
         </h1>
-        <Link to={`/catalogue?collection=${HERO_SLIDES[current].collection}`} className="sc-hero-cta">
+        {/* <Link to={`/catalogue?collection=${HERO_SLIDES[current].collection}`} className="sc-hero-cta">
           Explore Collection <ArrowRight size={16} />
-        </Link>
+        </Link> */}
       </div>
 
       {/* Dot navigation */}
