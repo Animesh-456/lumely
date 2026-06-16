@@ -3886,7 +3886,7 @@ h3 {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  color: #1a1a1a;
+  color: #878383;
   transition: background 0.2s, color 0.2s;
 }
 
@@ -4073,7 +4073,7 @@ h3 {
   padding: 0;
   display: flex;
   align-items: center;
-  color: #1a1a1a;
+  color: #c9c5c5;
   cursor: pointer;
   transition: color 0.2s;
 }

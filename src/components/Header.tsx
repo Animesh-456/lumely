@@ -44,7 +44,7 @@ export default function Header() {
             {/* Desktop Inline Search Bar & Mobile Toggleable Search */}
             <form onSubmit={handleSearch} className={`sc-inline-search ${searchOpen ? 'sc-mobile-open' : ''}`}>
               <button type="submit" className="sc-inline-search-btn" aria-label="Submit search">
-                <Search size={18} />
+                <Search size={16} />
               </button>
               <input
                 type="text"
