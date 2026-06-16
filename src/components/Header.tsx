@@ -41,14 +41,40 @@ export default function Header() {
 
           {/* Right actions */}
           <div className="sc-header-actions">
-            {/* Icon group: Search, Browse, Wishlist, User */}
-            <button
-              className="sc-icon-btn"
-              onClick={() => setSearchOpen(!searchOpen)}
-              aria-label="Search"
-            >
-              <Search size={18} />
-            </button>
+            {/* Desktop Inline Search Bar & Mobile Toggleable Search */}
+            <form onSubmit={handleSearch} className={`sc-inline-search ${searchOpen ? 'sc-mobile-open' : ''}`}>
+              <button type="submit" className="sc-inline-search-btn" aria-label="Submit search">
+                <Search size={18} />
+              </button>
+              <input
+                type="text"
+                placeholder="SEARCH..."
+                value={searchQuery}
+                onChange={e => setSearchQuery(e.target.value)}
+                className="sc-inline-search-input"
+              />
+              {searchOpen && (
+                <button
+                  type="button"
+                  onClick={() => setSearchOpen(false)}
+                  className="sc-inline-search-close"
+                  aria-label="Close search"
+                >
+                  <X size={18} />
+                </button>
+              )}
+            </form>
+
+            {/* Mobile-only toggle button (visible when search is closed on mobile) */}
+            {!searchOpen && (
+              <button
+                className="sc-icon-btn sc-search-toggle-mobile"
+                onClick={() => setSearchOpen(true)}
+                aria-label="Open search"
+              >
+                <Search size={18} />
+              </button>
+            )}
             <button className="sc-icon-btn" aria-label="Browse">
               <Globe size={18} />
             </button>
@@ -102,11 +128,11 @@ export default function Header() {
 
 
             <Link to="/contact" className="sc-nav-link" onClick={() => setMobileOpen(false)}>
-              Connect With Us
+              Our Collections
             </Link>
 
             <Link to="/contact" className="sc-nav-link" onClick={() => setMobileOpen(false)}>
-              Our Collections
+              Connect With Us
             </Link>
 
             {isAuthenticated ? (
@@ -132,26 +158,6 @@ export default function Header() {
           </div>
         </nav>
 
-        {/* ── Search bar ── */}
-        {searchOpen && (
-          <div className="sc-search-bar">
-            <div className="container">
-              <form onSubmit={handleSearch} className="sc-search-form">
-                <Search size={18} />
-                <input
-                  type="text"
-                  placeholder="Search collections, jewellery..."
-                  value={searchQuery}
-                  onChange={e => setSearchQuery(e.target.value)}
-                  autoFocus
-                />
-                <button type="button" onClick={() => setSearchOpen(false)} aria-label="Close search">
-                  <X size={18} />
-                </button>
-              </form>
-            </div>
-          </div>
-        )}
       </header>
 
       {/* Mobile overlay */}
