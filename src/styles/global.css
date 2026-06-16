@@ -4326,7 +4326,9 @@ h3 {
 /* Text side: clamp-based left padding aligns with standard container */
 .sc-brand-intro-content {
   text-align: left;
-  padding: 5rem 2rem 5rem clamp(1.5rem, calc((100vw - 1240px) / 2 + 3rem), 9rem);
+  /* padding: 5rem 2rem 5rem clamp(1.5rem, calc((100vw - 1240px) / 2 + 3rem), 9rem); */
+  padding-left: 30px;
+
 }
 
 .sc-brand-intro-heading {
@@ -4345,10 +4347,10 @@ h3 {
 
 .sc-brand-intro-text {
   color: #555;
-  font-size: 0.92rem;
+  font-size: 1.3rem;
   line-height: 1.85;
   margin-bottom: 1.75rem;
-  max-width: 420px;
+
 }
 
 /* Image side: taller container, large ring overflows into corner */
@@ -4359,8 +4361,8 @@ h3 {
 }
 
 .sc-brand-intro-img img {
-  position: absolute;
-  width: 100%;
+  position: fixed;
+
   height: 100%;
   object-fit: contain;
   object-position: right center;

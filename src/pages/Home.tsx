@@ -153,8 +153,8 @@ export default function Home() {
           <div className="sc-brand-intro-content">
             <span className="sc-eyebrow">Est. 1954 · Birmingham, UK</span>
             <h2 className="sc-brand-intro-heading">
-              Fine Wholesale Jewellery,<br />
-              <em>Crafted for Retailers</em>
+              Fine Wholesale Jewellery,
+              <em>  Crafted for Retailers</em>
             </h2>
             <p className="sc-brand-intro-text">
               Established in 1954, G&amp;J Lumley has built lasting partnerships with
