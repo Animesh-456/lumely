@@ -64,53 +64,51 @@ export default function Footer() {
   return (
     <footer className="sc-footer">
       <div className="sc-footer-inner container">
-        {/* Left: Logo + social */}
-        <div className="sc-footer-brand">
-          <Link to="/" className="sc-footer-logo" aria-label="G&J Lumley Home">
-            <img src="/logo.jpg" alt="G&J Lumley" className="sc-footer-logo-img" />
+        {/* Logo */}
+        <Link to="/" className="sc-footer-logo" aria-label="G&J Lumley Home">
+          <img src="/logo-footer.png" alt="G&J Lumley" className="sc-footer-logo-img" />
+        </Link>
+
+        {/* Tagline */}
+        <p className="sc-footer-tagline">
+          Trusted UK wholesale jewellery supplier since 1978.
+        </p>
+
+        {/* Horizontal Navigation Links */}
+        <div className="sc-footer-nav-row">
+          <Link to="/about#shows" className="sc-footer-link">Upcoming Shows</Link>
+          <span className="sc-footer-divider">|</span>
+          <Link to="/about#press" className="sc-footer-link">In the Press</Link>
+          <span className="sc-footer-divider">|</span>
+          <Link to="/contact" className="sc-footer-link">Contact Us</Link>
+          <span className="sc-footer-divider">|</span>
+          <Link to="/account" className="sc-footer-link">My Account</Link>
+          <span className="sc-footer-divider">|</span>
+          <Link to="/register" className="sc-footer-link sc-footer-signup">
+            Sign Up
           </Link>
-          <p className="sc-footer-tagline">
-            Trusted UK wholesale jewellery supplier since 1978.
-          </p>
-          <div className="sc-footer-social">
-            <span className="sc-footer-follow">Follow us on:</span>
-            <div className="sc-footer-social-icons">
-              <a href="#" aria-label="Instagram" className="sc-social-link">
-                <Instagram size={16} />
-              </a>
-              <a href="#" aria-label="Facebook" className="sc-social-link">
-                <Facebook size={16} />
-              </a>
-              <a href="#" aria-label="LinkedIn" className="sc-social-link">
-                <Linkedin size={16} />
-              </a>
-            </div>
-          </div>
         </div>
 
-        {/* Right: Navigation links */}
-        <div className="sc-footer-links">
-          <ul className="sc-footer-nav">
-            <li><Link to="/about#shows" className="sc-footer-link">Upcoming Shows</Link></li>
-            <li><Link to="/about#press" className="sc-footer-link">In the Press</Link></li>
-            <li><Link to="/contact" className="sc-footer-link">Contact Us</Link></li>
-            <li><Link to="/account" className="sc-footer-link">My Account</Link></li>
-            <li>
-              <Link to="/register" className="sc-footer-link sc-footer-signup">
-                Sign Up
-              </Link>
-            </li>
-          </ul>
+        {/* Social Icons */}
+        <div className="sc-footer-social">
+          <div className="sc-footer-social-icons">
+            <a href="#" aria-label="Instagram" className="sc-social-link">
+              <Instagram size={16} />
+            </a>
+            <a href="#" aria-label="Facebook" className="sc-social-link">
+              <Facebook size={16} />
+            </a>
+            <a href="#" aria-label="LinkedIn" className="sc-social-link">
+              <Linkedin size={16} />
+            </a>
+          </div>
         </div>
       </div>
 
       <div className="sc-footer-bottom">
         <div className="container">
-          <p>&copy; {new Date().getFullYear()} G&J Lumley Ltd. All rights reserved.</p>
-          <div className="sc-footer-legal">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms &amp; Conditions</a>
-          </div>
+          <p>&copy; {new Date().getFullYear()} G&J Lumley Ltd. All rights reserved. &nbsp; Designed & Developed by <a href="https://www.jhunsinfobay.com" target="_blank">Jhuns Infobay</a></p>
+
         </div>
       </div>
     </footer>
