@@ -69,7 +69,7 @@ export default function LumleyAdvantage() {
         {/* ── Left sticky panel ── */}
         <div className="lumley-left">
           <p className="lumley-eyebrow">Why Choose Us</p>
-          <h2 className="lumley-heading">The Lumley<br />Advantage</h2>
+          <h2 className="lumley-heading">The Lumley Advantage</h2>
           <p className="lumley-desc">
             With decades of industry expertise and strong retailer relationships
             across the UK and Ireland, G&amp;J Lumley offers more than fine
@@ -84,8 +84,8 @@ export default function LumleyAdvantage() {
         <div className="lumley-right">
           {/* Vertical progress track */}
           <div className="lumley-progress-track">
-            <div 
-              className="lumley-progress-bar" 
+            <div
+              className="lumley-progress-bar"
               style={{ height: `${(activeStep / 2) * 100}%` }}
             />
             {steps.map((_, i) => (
