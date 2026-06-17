@@ -4352,8 +4352,8 @@ h3 {
   font-size: 1.3rem;
   line-height: 1.85;
   margin-bottom: 1.75rem;
-  padding-right: 70px;
-
+  /* padding-right: 70px; */
+  width: 700px;
 }
 
 /* Image side: taller container, large ring overflows into corner */
