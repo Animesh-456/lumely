@@ -3911,6 +3911,7 @@ h3 {
   text-decoration: none;
   border-left: 1px solid #ece9e4;
   padding-left: 1.5rem;
+  margin-right: 5rem;
 }
 
 /* Icon group divider — first retailer btn gets a left border */
@@ -6182,9 +6183,11 @@ h3 {
   .lumley-img-wrapper {
     max-width: 300px;
   }
+
   .lumley-heading {
     margin-bottom: 0.75rem;
   }
+
   .lumley-desc {
     margin-bottom: 1rem;
   }
