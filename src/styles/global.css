@@ -4358,7 +4358,7 @@ h3 {
 
 /* Image side: taller container, large ring overflows into corner */
 .sc-brand-intro-img {
-  position: relative;
+  /* position: relative; */
   height: 560px;
   overflow: visible;
 }
