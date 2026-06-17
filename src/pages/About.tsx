@@ -91,17 +91,6 @@ export default function About() {
         }
       })
 
-      // Tagline scroll overlap
-      gsap.to('.ow-tagline-overlap', {
-        y: -100,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '.ow-hero-section',
-          start: 'top top',
-          end: 'bottom top',
-          scrub: true
-        }
-      })
 
       // Advantage counter
       gsap.utils.toArray<HTMLElement>('.ow-stat-num').forEach((el) => {
@@ -139,13 +128,15 @@ export default function About() {
           />
           <div className="ow-hero-overlay" />
         </div>
-        <div className="ow-tagline-container">
-          <div className="ow-tagline-overlap">
-            <span className="ow-pre-tagline">Est. 1954</span>
-            <h1>Crafting Jewellery Across Generations</h1>
-          </div>
-        </div>
+
       </section>
+
+      <div className="ow-tagline-container">
+        <div className="ow-tagline-overlap ow-reveal">
+          <span className="ow-pre-tagline">Est. 1954</span>
+          <h1>Crafting Jewellery Across Generations</h1>
+        </div>
+      </div>
 
       {/* ─── 2. BRAND WRITE UP ───────────────────────────────── */}
       <section id="brand" className="ow-section ow-brand">

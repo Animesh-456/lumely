@@ -35,10 +35,11 @@ export default function LumleyAdvantage() {
 
       const rect = section.getBoundingClientRect()
       const sectionHeight = rect.height
-      const scrolled = -rect.top // Height scrolled past the top of the section
+      const headerHeight = 138
+      const scrolled = headerHeight - rect.top // Height scrolled past the start threshold (138px from top)
+      const totalScrollable = sectionHeight - (window.innerHeight - headerHeight)
 
-      if (scrolled >= 0 && scrolled <= sectionHeight) {
-        const totalScrollable = sectionHeight - window.innerHeight
+      if (scrolled >= 0 && scrolled <= totalScrollable) {
         if (totalScrollable > 0) {
           const progress = scrolled / totalScrollable
           const stepIndex = Math.min(
@@ -47,9 +48,9 @@ export default function LumleyAdvantage() {
           )
           setActiveStep(stepIndex)
         }
-      } else if (rect.top > 0) {
+      } else if (scrolled < 0) {
         setActiveStep(0)
-      } else if (rect.bottom < window.innerHeight) {
+      } else {
         setActiveStep(2)
       }
     }
@@ -95,9 +96,11 @@ export default function LumleyAdvantage() {
                   const section = sectionRef.current;
                   if (!section) return;
                   const sectionHeight = section.getBoundingClientRect().height;
-                  const totalScrollable = sectionHeight - window.innerHeight;
+                  const headerHeight = 138;
+                  const totalScrollable = sectionHeight - (window.innerHeight - headerHeight);
                   if (totalScrollable > 0) {
-                    const scrollTarget = section.offsetTop + (i / 2) * totalScrollable;
+                    const targetScrolled = (i / 2) * totalScrollable;
+                    const scrollTarget = section.offsetTop - headerHeight + targetScrolled;
                     window.scrollTo({ top: scrollTarget, behavior: 'smooth' });
                   }
                 }}
