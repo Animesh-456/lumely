@@ -4318,7 +4318,7 @@ h3 {
 
 .sc-brand-intro-split {
   display: grid;
-  grid-template-columns: 45% 20%;
+  grid-template-columns: 65% 20%;
   justify-content: center;
   /* More room for ring */
   align-items: center;
@@ -4632,6 +4632,7 @@ h3 {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.25rem;
+  margin: 1rem;
 }
 
 .sc-cat-card {
