@@ -128,7 +128,7 @@ export default function Contact() {
       <div className="contact-map">
         <iframe
           title="G&J Lumley Location"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2430.0!2d-1.9!3d52.49!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sBirmingham+Jewellery+Quarter!5e0!3m2!1sen!2suk!4v1"
+          src="https://maps.google.com/maps?q=G%20%26%20J%20Lumley%20Ltd%2C%20C%2FO%20McCarthys%20Business%20Center%20Suite15%2C%20Education%20Road%2C%20West%20Yorkshire%2C%20LS7%202AL&t=&z=15&ie=UTF8&iwloc=&output=embed"
           width="100%"
           height="400"
           style={{ border: 0 }}
