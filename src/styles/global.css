@@ -2037,6 +2037,14 @@ h3 {
   line-height: 1.5;
 }
 
+.contact-card p a {
+  transition: color var(--transition);
+}
+
+.contact-card p a:hover {
+  color: var(--color-accent);
+}
+
 .contact-card-sub {
   font-size: 0.78rem !important;
   color: var(--color-text-muted) !important;

@@ -151,7 +151,7 @@ export default function Home() {
       <section className="sc-brand-intro">
         <div className="sc-brand-intro-split sc-reveal">
           <div className="sc-brand-intro-content">
-            <span className="sc-eyebrow">Est. 1954 · Birmingham, UK</span>
+            <span className="sc-eyebrow">Est. 1954 · Leeds, West Yorkshire, UK</span>
             <h2 className="sc-brand-intro-heading">
               Fine Wholesale Jewellery,
               <em>  Crafted for Retailers</em>

@@ -56,8 +56,8 @@ export default function OrderConfirmation() {
           <div className="confirmation-contact">
             <p>Have questions about your order?</p>
             <div className="confirmation-contact-methods">
-              <a href="mailto:trade@lumleyjewellery.co.uk"><Mail size={16} /> trade@lumleyjewellery.co.uk</a>
-              <a href="tel:+441212364478"><Phone size={16} /> +44 (0)121 236 4478</a>
+              <a href="mailto:anita@lumlyjewellery.co.uk"><Mail size={16} /> anita@lumlyjewellery.co.uk</a>
+              <a href="tel:+441132379628"><Phone size={16} /> +44 (0) 113 237 9628</a>
             </div>
           </div>
 

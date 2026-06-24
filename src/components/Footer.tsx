@@ -71,15 +71,20 @@ export default function Footer() {
 
         {/* Tagline */}
         <p className="sc-footer-tagline">
-          Trusted UK wholesale jewellery supplier since 1978.
+          Trusted UK wholesale jewellery supplier since 1954.
         </p>
 
         {/* Horizontal Navigation Links */}
         <div className="sc-footer-nav-row">
-          <Link to="/about#shows" className="sc-footer-link">Upcoming Shows</Link>
-          <span className="sc-footer-divider">|</span>
-          <Link to="/about#press" className="sc-footer-link">In the Press</Link>
-          <span className="sc-footer-divider">|</span>
+          <a
+            href="https://www.thejewelleryshow.co.uk/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="sc-footer-link"
+          >
+            Upcoming Shows
+          </a><span className="sc-footer-divider">|</span>
+
           <Link to="/contact" className="sc-footer-link">Contact Us</Link>
           <span className="sc-footer-divider">|</span>
           <Link to="/account" className="sc-footer-link">My Account</Link>
@@ -107,7 +112,7 @@ export default function Footer() {
 
       <div className="sc-footer-bottom">
         <div className="container">
-          <p>&copy; {new Date().getFullYear()} G&J Lumley Ltd. All rights reserved. &nbsp; Designed & Developed by <a href="https://www.jhunsinfobay.com" target="_blank">Jhuns Infobay</a></p>
+          <p>&copy; {new Date().getFullYear()} G&J Lumley Ltd. All rights reserved. &nbsp; Designed & Developed by <a href="https://www.jhunsinfobay.com" target="_blank" rel="noopener noreferrer">Jhuns Infobay</a></p>
 
         </div>
       </div>

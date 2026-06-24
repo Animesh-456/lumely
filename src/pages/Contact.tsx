@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { MapPin, Phone, Mail, Clock, Send, CheckCircle } from 'lucide-react'
+import { MapPin, Phone, Mail, Clock, Send, CheckCircle, MessageCircle } from 'lucide-react'
 import { api } from '../services/api'
 
 export default function Contact() {
@@ -36,14 +36,14 @@ export default function Contact() {
               <MapPin size={24} />
               <div>
                 <h4>Visit Us</h4>
-                <p>G&J Lumley Ltd<br />Jewellery Quarter<br />Birmingham, B1 3DE<br />United Kingdom</p>
+                <p>G & J Lumley Ltd<br />C/O McCarthys Business Center Suite15, Education Road<br />West Yorkshire<br />LS7 2AL</p>
               </div>
             </div>
             <div className="contact-card">
               <Phone size={24} />
               <div>
                 <h4>Call Us</h4>
-                <p>+44 (0)121 236 4478</p>
+                <p><a href="tel:+441132379628">+44 (0) 113 237 9628</a></p>
                 <p className="contact-card-sub">Monday to Friday, 9am – 5pm</p>
               </div>
             </div>
@@ -51,15 +51,23 @@ export default function Contact() {
               <Mail size={24} />
               <div>
                 <h4>Email Us</h4>
-                <p>trade@lumleyjewellery.co.uk</p>
+                <p><a href="mailto:anita@lumlyjewellery.co.uk">anita@lumlyjewellery.co.uk</a></p>
                 <p className="contact-card-sub">We aim to respond within 24 hours</p>
+              </div>
+            </div>
+            <div className="contact-card">
+              <MessageCircle size={24} />
+              <div>
+                <h4>WhatsApp</h4>
+                <p><a href="https://wa.me/919833899457" target="_blank" rel="noopener noreferrer">+91 9833899457</a></p>
+                <p className="contact-card-sub">For Bespoke Inquiries</p>
               </div>
             </div>
             <div className="contact-card">
               <Clock size={24} />
               <div>
                 <h4>Opening Hours</h4>
-                <p>Mon – Fri: 9:00am – 5:00pm<br />Sat: 10:00am – 2:00pm<br />Sun: Closed</p>
+                <p>Mon – Fri: 9:00am – 5:00pm<br />Sat & Sun: Closed</p>
               </div>
             </div>
           </div>

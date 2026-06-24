@@ -152,9 +152,10 @@ export default function About() {
               <span className="ow-eyebrow">THE FOUNDATION</span>
               <h2 className="ow-section-heading">Seventy Years of Fine Jewellery Excellence</h2>
               <div className="ow-text-content">
-                <p>Established in 1954, G&amp;J Lumley brings decades of expertise and a deep understanding of the UK jewellery market. With a strong presence across England, Scotland, and Ireland, we proudly partner with over 200 independent jewellers, building long-standing relationships rooted in trust, quality, and consistency.</p>
+                <p>Established in 1954, G&amp;J Lumley brings decades of expertise and a deep understanding of the UK jewellery market. With a strong presence across England, Scotland, Ireland and Wales, we proudly partner with over 200 independent jewellers, building long-standing relationships rooted in trust, quality, and consistency.</p>
                 <p>Specialising in bespoke bridal jewellery, diamond essentials, and contemporary fine jewellery, our collections are thoughtfully developed to reflect evolving customer preferences while maintaining timeless craftsmanship. Every piece is designed with precision, individuality, and wearability in mind.</p>
                 <p>Our in-house design and CAD development team ensures a seamless journey from concept to creation, combining innovation with efficient turnaround times and dependable service.</p>
+                <p>Backed by generations of manufacturing expertise, G&J Lumley continues to deliver fine jewellery crafted to support modern independent retail.</p>
               </div>
               <Link to="/contact" className="ow-btn">
                 Work With Us <ArrowRight size={16} />
