@@ -201,7 +201,7 @@ export default function About() {
             <div className="ow-stat ow-reveal">
               <span className="ow-stat-num" data-target="3">3</span>
               <span className="ow-stat-suffix"></span>
-              <span className="ow-stat-label">Countries: England, Scotland &amp; Ireland</span>
+              <span className="ow-stat-label">Countries: England, Scotland, Ireland &amp; Wales</span>
             </div>
             <div className="ow-stat-divider" />
             <div className="ow-stat ow-reveal">
