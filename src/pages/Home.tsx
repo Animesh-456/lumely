@@ -166,7 +166,7 @@ export default function Home() {
             </Link>
           </div>
           <div className="sc-brand-intro-img">
-            <img src="/brand-intro.jpg" alt="Fine Wholesale Jewellery" />
+            <img src="/brand-intro.png" alt="Fine Wholesale Jewellery" />
           </div>
         </div>
       </section>
