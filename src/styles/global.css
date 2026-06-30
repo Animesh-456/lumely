@@ -4362,8 +4362,7 @@ h3 {
   line-height: 1.85;
   margin-bottom: 1.75rem;
   /* padding-right: 70px; */
-  max-width: 700px;
-  width: 100%;
+  width: 700px;
 }
 
 /* Image side: taller container, large ring overflows into corner */
@@ -4396,6 +4395,11 @@ h3 {
     padding: 4rem 2rem 4rem 3rem;
   }
 
+  .sc-brand-intro-text {
+    width: auto;
+    max-width: 100%;
+  }
+
   .sc-brand-intro-img {
     height: 480px;
   }
@@ -4413,6 +4417,7 @@ h3 {
   }
 
   .sc-brand-intro-text {
+    width: auto;
     max-width: 100%;
   }
 
